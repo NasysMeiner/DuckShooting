@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(CharacterController))]
@@ -24,7 +22,19 @@ public class Movement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        MoveByKeyboard();
+        if (Application.isMobilePlatform)
+        {
+            MoveByPhone();
+        }
+        else
+        {
+            MoveByKeyboard();
+        }
+    }
+
+    private void MoveByPhone()
+    {
+
     }
 
     private void MoveByKeyboard()
