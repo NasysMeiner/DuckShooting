@@ -851,4 +851,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _shot: {fileID: 4767813072932627935, guid: e0422bc8f079c194ea2999e4e90a5ad9, type: 3}
   _shotSpawn: {fileID: 2093541895}
-  _fireRate: 0.5
+  reloadTimer: 2
