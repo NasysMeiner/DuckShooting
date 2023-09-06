@@ -37,19 +37,16 @@ public class Movement : MonoBehaviour
     void Start()
     {
         _rigidbody = GetComponent<Rigidbody>();
-        _collider = GetComponent<CapsuleCollider>();
-
-        if (GroundLayer == gameObject.layer)
-            Debug.LogError("Player SortingLayer must be different from Ground SourtingLayer!");
+        _collider = GetComponent<CapsuleCollider>(); //GroundLayer != gameObject.layer
     }
 
     void FixedUpdate()
     {
-        JumpLogic();
-        MoveLogic();
+        Jump();
+        Move();
     }
 
-    private void MoveLogic()
+    private void Move()
     {
         if (Application.isMobilePlatform)
         {
@@ -65,7 +62,7 @@ public class Movement : MonoBehaviour
            
     }
 
-    private void JumpLogic()
+    private void Jump()
     {
         if (Application.isMobilePlatform)
         {

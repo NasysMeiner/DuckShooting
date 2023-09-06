@@ -6,6 +6,7 @@ public class StandartBullet : Bullet
 {
     public override void Init(float speed, float damage)
     {
+        _rigidbody = GetComponent<Rigidbody>();
         _speed = speed;
         _damage = damage;
     }
@@ -17,6 +18,6 @@ public class StandartBullet : Bullet
 
     public override void SetVelocity()
     {
-        //GetComponent<Rigidbody>().velocity = GetComponent<Rigidbody>().transform.up * _speed;
+        _rigidbody.velocity = Vector3.up * _speed;
     }
 }
