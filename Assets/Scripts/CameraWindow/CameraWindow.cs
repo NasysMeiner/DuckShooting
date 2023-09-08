@@ -2,56 +2,48 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SocialPlatforms;
 
 public class CameraWindow : MonoBehaviour
 {
     [SerializeField] private float _startSpeed = 0.0001f;
+    [SerializeField] private float _minusSpeed = 0.0001f;
 
     private Movement _player;
-    private Collider _collider;
     private bool _isInside = true;
-
-    public Vector3 CenterPlayer
-    {
-        get
-        {
-            return new Vector3(_collider.bounds.center.x, _collider.bounds.center.y, _collider.bounds.center.z);
-        }
-    }
 
     private void OnTriggerExit(Collider other)
     {
         if(other.gameObject.TryGetComponent(out Movement player))
         {
-            Debug.Log("Exit");
             _player = player;
             _isInside = false;
-            _collider = other;
             StartCoroutine(Move());
         }
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.TryGetComponent(out Movement player))
-        {
+        if (other.gameObject.TryGetComponent(out BorderPlayer player))
             _isInside = true;
-            Debug.Log("Stop");
-        }
     }
 
     private IEnumerator Move()
     {
         bool isWork = true;
+        float speed = _startSpeed;
 
         while (isWork)
         {
-            transform.position = Vector3.Lerp(transform.position, _player.transform.position, _startSpeed);
+            transform.position = Vector3.Lerp(transform.position, _player.transform.position, speed);
 
             if (_isInside)
+                speed -= _minusSpeed;
+
+            if (speed <= 0)
                 isWork = false;
 
-            yield return null;
+            yield return new WaitForFixedUpdate();
         }
     }
 }
