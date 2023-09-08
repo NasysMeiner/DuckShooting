@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class StandartEnemy : Enemy
 {
-    public override void Init(float healthPoint, float damage)
+    public override void Init(int healthPoint, float damage)
     {
         _healthPoint = healthPoint;
         _damage = damage;

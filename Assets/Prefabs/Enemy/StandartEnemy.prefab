@@ -903,9 +903,10 @@ GameObject:
   - component: {fileID: 8260442980923517338}
   - component: {fileID: 4423135919795101327}
   - component: {fileID: 3085678632886662267}
+  - component: {fileID: -431176510801893787}
   m_Layer: 0
   m_Name: StandartEnemy
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -940,6 +941,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ccbe71d4839a034db21a0ee8cda2838, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _healthPoint: 1
+  _damage: 1
 --- !u!54 &3085678632886662267
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -967,6 +970,18 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &-431176510801893787
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1275452048985735654}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 79f615c26b8701749b1a4a9c3d534940, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1430119164203128290
 GameObject:
   m_ObjectHideFlags: 0
