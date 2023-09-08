@@ -1,4 +1,5 @@
 using System;
+using UnityEditor.Profiling;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
@@ -12,6 +13,8 @@ public class Movement : MonoBehaviour
 
     private Rigidbody _rigidbody;
     private CapsuleCollider _collider;
+
+    public float Speed => _speed;
 
     private bool _isGrounded
     {

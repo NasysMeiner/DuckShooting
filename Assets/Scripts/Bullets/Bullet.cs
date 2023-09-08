@@ -5,9 +5,9 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody))]
 public abstract class Bullet : MonoBehaviour, IBullet
 {
+    private bool _isInCannon = false;
     protected float _speed = 3f;
     protected float _damage = 1f;
-    protected bool _isInCannon = false;
     protected Rigidbody _rigidbody;
 
     public bool IsInCannon => _isInCannon;

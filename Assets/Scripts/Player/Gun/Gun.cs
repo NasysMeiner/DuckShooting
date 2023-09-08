@@ -3,13 +3,21 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BaseGun : MonoBehaviour, IGun
+public class Gun : MonoBehaviour, IGun
 {
     [SerializeField] protected BulletStore _bulletStore;
     [SerializeField] protected ShotPoint _shotPoint;
     [SerializeField] protected float _timeShot = 1;
 
-    protected bool _isStart = false;
+    private bool _isStart = false;
+    private Bullet _bullet;
+
+    public Bullet Bullet => _bullet;
+
+    public void SetTypeBullet(Bullet bullet)
+    {
+        _bullet = bullet;
+    }
 
     public void StartFire()
     {
