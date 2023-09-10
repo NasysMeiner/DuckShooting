@@ -9,7 +9,6 @@ public class TestWaves : MonoBehaviour
     private void Awake()
     {
         _waveSpawner = GameObject.Find("WaveController").GetComponent<WaveSpawner>();
-        
     }
 
     private void OnDestroy()

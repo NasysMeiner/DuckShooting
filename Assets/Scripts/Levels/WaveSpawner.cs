@@ -5,15 +5,10 @@ using UnityEngine;
 public class WaveSpawner : MonoBehaviour
 {
     [SerializeField] private Waves[] _waves;
+
     private int _currentEnemyIndex;
     private int _currentWaveIndex;
     private int _enemiesLeftToSpawn;
-
-    private void Start()
-    {
-        _enemiesLeftToSpawn = _waves[0].WaveSettings.Length;
-        LaunchWave();
-    }
 
     private IEnumerator SpawnEnemyInWave()
     {
@@ -35,6 +30,12 @@ public class WaveSpawner : MonoBehaviour
                 _currentEnemyIndex = 0;
             }
         }
+    }
+
+    public void StartSpawn()
+    {
+        _enemiesLeftToSpawn = _waves[0].WaveSettings.Length;
+        LaunchWave();
     }
 
     public void LaunchWave()

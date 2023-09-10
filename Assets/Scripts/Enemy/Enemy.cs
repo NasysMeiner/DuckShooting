@@ -12,7 +12,7 @@ public abstract class Enemy : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if(_healthPoint == 0)
+        if(_healthPoint <= 0)
         {
             Destroy(this.gameObject);
         }
