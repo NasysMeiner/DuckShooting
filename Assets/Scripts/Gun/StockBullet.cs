@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-public class BulletStore : MonoBehaviour
+public class StockBullet : MonoBehaviour
 {
     private List<Bullet> _bullets = new List<Bullet>();
 

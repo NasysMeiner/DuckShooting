@@ -5,14 +5,23 @@ using UnityEngine;
 
 public class Gun : MonoBehaviour, IGun
 {
-    [SerializeField] protected BulletStore _bulletStore;
-    [SerializeField] protected ShotPoint _shotPoint;
-    [SerializeField] protected float _timeShot = 1;
+    [SerializeField] private ShotPoint _shotPoint;
+    [SerializeField] private Transform _pointPosition;  
 
     private bool _isStart = false;
     private Bullet _bullet;
+    private float _timeShot = 1;
+    private StockBullet _stockBullet;
 
     public Bullet Bullet => _bullet;
+    public Transform PointPosition => _pointPosition;
+
+    public void Init(Bullet bullet, float timeShot, StockBullet stockBullet)
+    {
+        _bullet = bullet;
+        _timeShot = timeShot;
+        _stockBullet = stockBullet;
+    }
 
     public void SetTypeBullet(Bullet bullet)
     {
@@ -30,7 +39,7 @@ public class Gun : MonoBehaviour, IGun
 
     public void StopFire()
     {
-        if(_isStart == false)
+        if(_isStart == true)
         {
             _isStart = false;
             StopCoroutine(TakeFire());
@@ -39,7 +48,7 @@ public class Gun : MonoBehaviour, IGun
 
     public Bullet SearchBullet()
     {
-        return _bulletStore.SearchFreeBullet();
+        return _stockBullet.SearchFreeBullet();
     }
 
     public virtual Bullet SetTypeDamage(Bullet bullet)
@@ -62,8 +71,15 @@ public class Gun : MonoBehaviour, IGun
 
     private IEnumerator TakeFire()
     {
-        while (true)
+        bool isWork = true;
+
+        while (isWork)
         {
+            if(_isStart == false)
+            {
+                break;
+            }    
+
             TakeShot();
 
             yield return new WaitForSeconds(_timeShot);

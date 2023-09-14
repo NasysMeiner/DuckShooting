@@ -23,7 +23,10 @@ public abstract class Bullet : MonoBehaviour, IBullet
 
     public void PullOutOfGun()
     {
-        _rigidbody.velocity = Vector3.zero;
-        _isInCannon = false;
+        if(_isInCannon == true)
+        {
+            _rigidbody.velocity = Vector3.zero;
+            _isInCannon = false;
+        }   
     }
 }

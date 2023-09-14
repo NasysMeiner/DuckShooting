@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class Border : MonoBehaviour
 {
-    [SerializeField] private BulletStore _bulletStore;
+    [SerializeField] private StockBullet _bulletStock;
 
     private void OnTriggerEnter(Collider collider)
     {
         if(collider.gameObject.TryGetComponent(out Bullet bullet))
         {
-            _bulletStore.AddBullet(bullet);
+            _bulletStock.AddBullet(bullet);
         }
     }
 }
