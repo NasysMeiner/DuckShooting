@@ -40,10 +40,7 @@ public class Gun : MonoBehaviour, IGun
     public void StopFire()
     {
         if(_isStart == true)
-        {
             _isStart = false;
-            StopCoroutine(TakeFire());
-        } 
     }
 
     public Bullet SearchBullet()
@@ -77,6 +74,7 @@ public class Gun : MonoBehaviour, IGun
         {
             if(_isStart == false)
             {
+                StopCoroutine(TakeFire());
                 break;
             }    
 

@@ -37,11 +37,14 @@ public class ArsenalPlayer : MonoBehaviour
     {
         if(_meinSlotGun != null && _extraSlotGun != null)
         {
-            ChangePositionGun();
             Gun temporaryGun = _meinSlotGun;
+
+            ChangePositionGun();
             _meinSlotGun.StopFire();
+
             _meinSlotGun = _extraSlotGun;
             _extraSlotGun = temporaryGun;
+
             _meinSlotGun.StartFire();
         }
     }

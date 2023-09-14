@@ -16,14 +16,14 @@ public class ShopGun : MonoBehaviour
         CellGun cellGun = new CellGun(gun);
         _guns.Add(cellGun);
 
-        if (_arsenalPlayer.MeinSlotGun == null)
-            _arsenalPlayer.SetMeinSlotGun(cellGun.Gun);
-        else if(_arsenalPlayer.ExtraSlotGun == null)
-            _arsenalPlayer.SetExtraSlotGun(cellGun.Gun);
+        SetGunPlayer(cellGun.Gun);
     }
 
-    public void SetGunPlayer()
+    public void SetGunPlayer(Gun gun)
     {
-
+        if (_arsenalPlayer.MeinSlotGun == null)
+            _arsenalPlayer.SetMeinSlotGun(gun);
+        else if (_arsenalPlayer.ExtraSlotGun == null)
+            _arsenalPlayer.SetExtraSlotGun(gun);
     }
 }

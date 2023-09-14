@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class SpawnerGuns : MonoBehaviour
 {
-    private List<FormGun> _formsGun;
+    [SerializeField] protected List<FormGun> _formsGun;
+
     private ShopGun _shopGun;
 
-    public void Init(ShopGun shopGun, List<FormGun> formsGun)
+    public void Init(ShopGun shopGun)
     {
         _shopGun = shopGun;
-        _formsGun = formsGun;
     }
 
     public void SpawnAllGun()
@@ -22,4 +22,16 @@ public class SpawnerGuns : MonoBehaviour
             _shopGun.PlaceInCell(newGun);
         }
     }
+}
+
+[System.Serializable]
+public class FormGun
+{
+    [SerializeField] private Gun _prefabGun;
+    [SerializeField] private Bullet _bullet;
+    [SerializeField] private float _timeShoot;
+
+    public Gun PrefabGun => _prefabGun;
+    public Bullet Bullet => _bullet;
+    public float TimeShoot => _timeShoot;
 }
