@@ -1,14 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
-[RequireComponent(typeof(Rigidbody))]
 public abstract class Enemy : MonoBehaviour
 {
     [SerializeField] protected int _healthPoint = 1;
     [SerializeField] protected float _damage = 1f;
 
-    protected Rigidbody _rigidbody;
+    protected GameObject[] _waypoints;
+    protected NavMeshAgent _agent;
+    protected int _waypointsIndex;
+    protected Vector3 _target;
+    protected string _nameOfSpawnpoints;
 
     private void FixedUpdate()
     {
@@ -18,5 +22,42 @@ public abstract class Enemy : MonoBehaviour
         }
     }
 
-    public abstract void Init(int healthPoint, float damage);
+    public abstract void Init(int healthPoint, float damage, GameObject[] waypoints);
+    public abstract void FindWay(string _nameOfSpawnpoints);
+
+    private void Start()
+    {
+        _agent = GetComponent<NavMeshAgent>();
+        UpdateDestination();
+    }
+
+    private void Update()
+    {
+        if (Vector3.Distance(transform.position, _target) < 1)
+        {
+            IterateWaypointIndex();
+            UpdateDestination();
+        }
+    }
+
+    private void OnEnable()
+    {
+        FindWay(_nameOfSpawnpoints);
+    }
+
+    private void UpdateDestination()
+    {
+        _target = _waypoints[_waypointsIndex].transform.position;
+        _agent.SetDestination(_target);
+    }
+
+    private void IterateWaypointIndex()
+    {
+        _waypointsIndex++;
+
+        if (_waypointsIndex == _waypoints.Length)
+        {
+            _waypointsIndex = 0;
+        }
+    }
 }
