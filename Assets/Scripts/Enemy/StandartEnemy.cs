@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.AI;
 
 public class StandartEnemy : Enemy
 {
@@ -17,5 +16,4 @@ public class StandartEnemy : Enemy
         _damage = damage;
         _waypoints = waypoints;
     }
-
 }

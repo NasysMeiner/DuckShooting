@@ -1,18 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.AI;
 
 public abstract class Enemy : MonoBehaviour
 {
-    [SerializeField] protected int _healthPoint = 1;
+    [SerializeField] protected int _healthPoint = 100;
     [SerializeField] protected float _damage = 1f;
+    [SerializeField] protected Slider _healthBar;
 
     protected GameObject[] _waypoints;
     protected NavMeshAgent _agent;
     protected int _waypointsIndex;
     protected Vector3 _target;
     protected string _nameOfSpawnpoints;
+
 
     private void FixedUpdate()
     {
@@ -33,6 +36,8 @@ public abstract class Enemy : MonoBehaviour
 
     private void Update()
     {
+        _healthBar.value = _healthPoint;
+
         if (Vector3.Distance(transform.position, _target) < 1)
         {
             IterateWaypointIndex();
