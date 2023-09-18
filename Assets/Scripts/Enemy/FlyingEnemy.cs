@@ -2,11 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class StandartEnemy : Enemy
+public class FlyingEnemy : Enemy
 {
     public override void FindWay(string _nameOfSpawnpoints)
     {
-        _nameOfSpawnpoints = "Spawnpoint";
+        _nameOfSpawnpoints = "SpawnpointForFlying";
         _waypoints = GameObject.FindGameObjectsWithTag(_nameOfSpawnpoints);
     }
 
