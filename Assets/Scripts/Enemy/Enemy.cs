@@ -9,60 +9,42 @@ public abstract class Enemy : MonoBehaviour
     [SerializeField] protected int _healthPoint = 100;
     [SerializeField] protected float _damage = 1f;
     [SerializeField] protected Slider _healthBar;
+    [SerializeField] protected List<GameObject> _waypoints;
+    [SerializeField] protected float _speed = 2;
 
-    protected GameObject[] _waypoints;
-    protected NavMeshAgent _agent;
-    protected int _waypointsIndex;
-    protected Vector3 _target;
-    protected string _nameOfSpawnpoints;
-
+    protected int _index;
 
     private void FixedUpdate()
     {
+        Movement();
+
         if(_healthPoint == 0)
         {
             Destroy(this.gameObject);
         }
-    }
 
-    public abstract void Init(int healthPoint, float damage, GameObject[] waypoints);
-    public abstract void FindWay(string _nameOfSpawnpoints);
-
-    private void Start()
-    {
-        _agent = GetComponent<NavMeshAgent>();
-        UpdateDestination();
-    }
-
-    private void Update()
-    {
         _healthBar.value = _healthPoint;
+    }
 
-        if (Vector3.Distance(transform.position, _target) < 1)
+    public abstract void Init(int healthPoint, float damage, List<GameObject> waypoints);
+
+    private void Movement()
+    {
+        Vector3 destination = _waypoints[_index].transform.position;
+        Vector3 newPosition = Vector3.MoveTowards(transform.position, destination, _speed * Time.deltaTime);
+        transform.position = newPosition;
+        float distance = Vector3.Distance(transform.position, destination);
+
+        if (distance <= 0.05)
         {
-            IterateWaypointIndex();
-            UpdateDestination();
-        }
-    }
-
-    private void OnEnable()
-    {
-        FindWay(_nameOfSpawnpoints);
-    }
-
-    private void UpdateDestination()
-    {
-        _target = _waypoints[_waypointsIndex].transform.position;
-        _agent.SetDestination(_target);
-    }
-
-    private void IterateWaypointIndex()
-    {
-        _waypointsIndex++;
-
-        if (_waypointsIndex == _waypoints.Length)
-        {
-            _waypointsIndex = 0;
+            if (_index < _waypoints.Count - 1)
+            {
+                _index++;
+            }
+            else
+            {
+                _index = 0;
+            }
         }
     }
 }

@@ -6,4 +6,6 @@ public class Constantes : MonoBehaviour
 {
     public const string StrMainMenuScene = "Main_Menu";
     public const string StrGame = "Game";
+    public const string StrMusic = "Music";
+    public const string StrSFX = "SFX";
 }
