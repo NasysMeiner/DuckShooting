@@ -9,10 +9,12 @@ public abstract class Enemy : MonoBehaviour
     [SerializeField] protected int _healthPoint = 100;
     [SerializeField] protected float _damage = 1f;
     [SerializeField] protected Slider _healthBar;
-    [SerializeField] protected List<GameObject> _waypoints;
+    //[SerializeField] protected List<GameObject> _waypoints;
+    [SerializeField] protected GameObject[] _waypoints;
     [SerializeField] protected float _speed = 2;
 
     protected int _index;
+    protected string _nameOfSpawnpoints;
 
     private void FixedUpdate()
     {
@@ -26,7 +28,13 @@ public abstract class Enemy : MonoBehaviour
         _healthBar.value = _healthPoint;
     }
 
-    public abstract void Init(int healthPoint, float damage, List<GameObject> waypoints);
+    public abstract void Init(int healthPoint, float damage, GameObject[] waypoints/*List<GameObject> waypoints*/);
+    public abstract void FindWay(string _nameOfSpawnpoints);
+
+    private void OnEnable()
+    {
+        FindWay(_nameOfSpawnpoints);
+    }
 
     private void Movement()
     {
@@ -37,7 +45,7 @@ public abstract class Enemy : MonoBehaviour
 
         if (distance <= 0.05)
         {
-            if (_index < _waypoints.Count - 1)
+            if (_index < _waypoints.Length - 1)
             {
                 _index++;
             }

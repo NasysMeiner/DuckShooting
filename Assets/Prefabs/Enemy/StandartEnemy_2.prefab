@@ -149,7 +149,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 90
   m_CollisionDetection: 0
 --- !u!136 &2126801034980010520
 CapsuleCollider:
@@ -189,6 +189,8 @@ MonoBehaviour:
   _healthPoint: 100
   _damage: 1
   _healthBar: {fileID: 1550264682739804230}
+  _waypoints: []
+  _speed: 2
 --- !u!1 &4279003639649419089
 GameObject:
   m_ObjectHideFlags: 0
