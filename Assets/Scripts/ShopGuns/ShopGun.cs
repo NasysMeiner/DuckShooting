@@ -21,9 +21,26 @@ public class ShopGun : MonoBehaviour
 
     public void SetGunPlayer(Gun gun)
     {
-        if (_arsenalPlayer.MeinSlotGun == null)
-            _arsenalPlayer.SetMeinSlotGun(gun);
-        else if (_arsenalPlayer.ExtraSlotGun == null)
-            _arsenalPlayer.SetExtraSlotGun(gun);
+        int index = _arsenalPlayer.SearchNullSlots();
+
+        if (index < 0)
+            return;
+
+        _arsenalPlayer.SetGunSlot(index, gun, out Gun oldGun);
+
+        if(oldGun != null)
+            ReturnGun(oldGun);
+    }
+
+    private void ReturnGun(Gun gun)
+    {
+        foreach(CellGun cellGun in _guns)
+        {
+            if(cellGun.Gun == gun)
+            {
+                cellGun.Gun.transform.position = transform.position;
+                cellGun.Gun.transform.SetParent(transform);
+            }
+        }
     }
 }

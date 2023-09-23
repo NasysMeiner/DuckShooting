@@ -1,57 +1,91 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ArsenalPlayer : MonoBehaviour
 {
-    [SerializeField] private Transform _pointMeinPositionGun;
-    [SerializeField] private Transform _pointExtraPositionGun;
+    [SerializeField] private List<Slot> _slots = new List<Slot>();
+    [SerializeField] private Button _changeGunButton;
+    [SerializeField] private float _buttonRollbackTime = 1f;
 
-    private Gun _meinSlotGun = null;
-    private Gun _extraSlotGun = null;
+    public int SlotCount => _slots.Count;
 
-    public Gun MeinSlotGun => _meinSlotGun;
-    public Gun ExtraSlotGun => _extraSlotGun;
-
-    public void SetMeinSlotGun(Gun gun)
+    public void SetGunSlot(int slot, Gun gun, out Gun oldGun)
     {
-        _meinSlotGun = gun;
-        gun.transform.position = _pointMeinPositionGun.position + (gun.transform.position - gun.PointPosition.position);
-        gun.transform.SetParent(transform);
+        oldGun = _slots[slot].SlotGun;
+        _slots[slot].SetGun(gun);
+        SetParent(_slots[slot].SlotGun);
     }
 
-    public void SetExtraSlotGun(Gun gun)
+    public int SearchNullSlots()
     {
-        _extraSlotGun = gun;
-        gun.transform.position = _pointExtraPositionGun.position + (gun.transform.position - gun.PointPosition.position);
+        for(int i = 0; i < _slots.Count; i++)
+        {
+            if (_slots[i].SlotGun == null)
+                return i;
+        }
+
+        return -1;
+    }
+
+    public void SetParent(Gun gun)
+    {
         gun.transform.SetParent(transform);
     }
 
     public void StartFire()
     {
-        if(_meinSlotGun != null)
-            _meinSlotGun.StartFire();
+        if(_slots[0].SlotGun != null)
+            _slots[0].SlotGun.StartFire();
+    }
+
+    public void StopFire()
+    {
+        if(_slots[0].SlotGun != null)
+            _slots[0].SlotGun.StopFire();
     }
 
     public void ChangeGun()
     {
-        if(_meinSlotGun != null && _extraSlotGun != null)
+        StartCoroutine(DisableButton());
+
+        StopFire();
+
+        for (int i = 0; i < _slots.Count - 1; i++)
         {
-            Gun temporaryGun = _meinSlotGun;
-
-            ChangePositionGun();
-            _meinSlotGun.StopFire();
-
-            _meinSlotGun = _extraSlotGun;
-            _extraSlotGun = temporaryGun;
-
-            _meinSlotGun.StartFire();
+            Gun timeGun = _slots[i].SlotGun;
+            _slots[i].SetGun(_slots[i + 1].SlotGun);
+            _slots[i + 1].SetGun(timeGun);
         }
+
+        StartFire();
     }
 
-    private void ChangePositionGun()
+    private IEnumerator DisableButton()
     {
-        _meinSlotGun.transform.position = _pointExtraPositionGun.position + (_meinSlotGun.transform.position - _meinSlotGun.PointPosition.position);
-        _extraSlotGun.transform.position = _pointMeinPositionGun.position + (_extraSlotGun.transform.position - _extraSlotGun.PointPosition.position);
+        _changeGunButton.interactable = false;
+
+        yield return new WaitForSeconds(_buttonRollbackTime);
+
+        _changeGunButton.interactable = true;
+
+        StopCoroutine(DisableButton());
+    }
+}
+
+[System.Serializable]
+public class Slot
+{
+    [SerializeField] private Transform _positionSlot;
+    
+    private Gun _slotGun;
+
+    public Gun SlotGun => _slotGun;
+
+    public void SetGun(Gun gun)
+    {
+        _slotGun = gun;
+        _slotGun.transform.position = _positionSlot.position + (_slotGun.transform.position - _slotGun.PointPosition.position);
     }
 }

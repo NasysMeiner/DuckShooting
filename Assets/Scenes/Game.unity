@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.4180725, g: 0.44627964, b: 0.4631505, a: 1}
+  m_IndirectSpecularColor: {r: 0.41807237, g: 0.44627917, b: 0.46315032, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1512,7 +1512,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _shopGun: {fileID: 176184200}
-  _spawnerGuns: {fileID: 0}
+  _spawnerGuns: {fileID: 1400129115}
 --- !u!114 &1400129113
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1554,7 +1554,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51a94963095bb9644b64b3e79f5c4f3f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _formsGun: []
+  _formsGun:
+  - _prefabGun: {fileID: 5700315768781495344, guid: 52898dff5f4070c4fa56ce95de532686, type: 3}
+    _bullet: {fileID: 1145825508973117007, guid: 074adbf38fb72ae4e886a829b679f5d8, type: 3}
+    _timeShoot: 1
+  - _prefabGun: {fileID: 8402359601827866552, guid: a2010ad2319558948a1d833cf732e7d8, type: 3}
+    _bullet: {fileID: 1145825508973117007, guid: 074adbf38fb72ae4e886a829b679f5d8, type: 3}
+    _timeShoot: 0.5
 --- !u!1 &1413727139
 GameObject:
   m_ObjectHideFlags: 0
@@ -1725,8 +1731,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cf5928f302f653488c7750523aeadf5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _pointMeinPositionGun: {fileID: 1727970821}
-  _pointExtraPositionGun: {fileID: 26223957}
+  _slots:
+  - _positionSlot: {fileID: 1727970821}
+  - _positionSlot: {fileID: 26223957}
+  _changeGunButton: {fileID: 1637479354}
+  _buttonRollbackTime: 2
 --- !u!1 &1454913515
 GameObject:
   m_ObjectHideFlags: 0
