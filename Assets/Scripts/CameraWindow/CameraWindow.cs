@@ -1,8 +1,4 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SocialPlatforms;
 
 public class CameraWindow : MonoBehaviour
 {
@@ -11,14 +7,15 @@ public class CameraWindow : MonoBehaviour
 
     private Movement _player;
     private bool _isInside = true;
+    private bool _isMovementCamera = false;
 
     private void OnTriggerExit(Collider other)
     {
-        if(other.gameObject.TryGetComponent(out Movement player))
+        if (other.gameObject.TryGetComponent(out Movement player))
         {
             _player = player;
             _isInside = false;
-            StartCoroutine(Move());
+            _isMovementCamera = true;
         }
     }
 
@@ -28,22 +25,25 @@ public class CameraWindow : MonoBehaviour
             _isInside = true;
     }
 
-    private IEnumerator Move()
+    private void FixedUpdate()
     {
-        bool isWork = true;
-        float speed = _startSpeed;
+        Move();
+    }
 
-        while (isWork)
+    private void Move()
+    {
+        if (_isMovementCamera)
         {
-            transform.position = Vector3.Lerp(transform.position, _player.transform.position, speed);
+            float speed = _startSpeed;
+
+            if (transform != null)
+                transform.position = Vector3.Lerp(transform.position, _player.transform.position, speed);
 
             if (_isInside)
                 speed -= _minusSpeed;
 
             if (speed <= 0)
-                isWork = false;
-
-            yield return new WaitForFixedUpdate();
+                _isMovementCamera = false;
         }
     }
 }

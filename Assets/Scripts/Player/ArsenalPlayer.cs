@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -7,7 +8,9 @@ public class ArsenalPlayer : MonoBehaviour
 {
     [SerializeField] private List<Slot> _slots = new List<Slot>();
     [SerializeField] private Button _changeGunButton;
-    [SerializeField] private float _buttonRollbackTime = 1f;
+    [SerializeField] private float _buttonRollbackTime = 1;
+
+    private int _millisekundy = 1000;
 
     public int SlotCount => _slots.Count;
 
@@ -46,9 +49,9 @@ public class ArsenalPlayer : MonoBehaviour
             _slots[0].SlotGun.StopFire();
     }
 
-    public void ChangeGun()
+    public async void ChangeGun()
     {
-        StartCoroutine(DisableButton());
+        _changeGunButton.interactable = false;
 
         StopFire();
 
@@ -59,18 +62,11 @@ public class ArsenalPlayer : MonoBehaviour
             _slots[i + 1].SetGun(timeGun);
         }
 
+        await Task.Delay((int)(_buttonRollbackTime * _millisekundy));
+
         StartFire();
-    }
-
-    private IEnumerator DisableButton()
-    {
-        _changeGunButton.interactable = false;
-
-        yield return new WaitForSeconds(_buttonRollbackTime);
 
         _changeGunButton.interactable = true;
-
-        StopCoroutine(DisableButton());
     }
 }
 

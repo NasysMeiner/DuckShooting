@@ -1,17 +1,17 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
+using System.Threading.Tasks;
 using UnityEngine;
 
 public class Gun : MonoBehaviour, IGun
 {
     [SerializeField] private ShotPoint _shotPoint;
-    [SerializeField] private Transform _pointPosition;  
+    [SerializeField] private Transform _pointPosition;
 
     private bool _isStart = false;
     private Bullet _bullet;
     private float _timeShot = 1;
     private StockBullet _stockBullet;
+
+    private int _millisekundy = 1000;
 
     public Bullet Bullet => _bullet;
     public Transform PointPosition => _pointPosition;
@@ -30,16 +30,16 @@ public class Gun : MonoBehaviour, IGun
 
     public void StartFire()
     {
-        if(_isStart == false)
+        if (_isStart == false)
         {
             _isStart = true;
-            StartCoroutine(TakeFire());
+            TakeFire();
         }
     }
 
     public void StopFire()
     {
-        if(_isStart == true)
+        if (_isStart == true)
             _isStart = false;
     }
 
@@ -63,24 +63,21 @@ public class Gun : MonoBehaviour, IGun
             bullet = SetTypeDamage(bullet);
             bullet.transform.position = _shotPoint.transform.position;
             bullet.SetVelocity();
-        }     
+        }
     }
 
-    private IEnumerator TakeFire()
+    private async void TakeFire()
     {
-        bool isWork = true;
-
-        while (isWork)
+        while (true)
         {
-            if(_isStart == false)
+            if (_isStart == false)
             {
-                StopCoroutine(TakeFire());
                 break;
-            }    
+            }
 
             TakeShot();
 
-            yield return new WaitForSeconds(_timeShot);
-        }  
+            await Task.Delay((int)(_timeShot * _millisekundy));
+        }
     }
 }
