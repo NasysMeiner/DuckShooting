@@ -4,16 +4,10 @@ using UnityEngine;
 
 public class FlyingEnemy : Enemy
 {
-    public override void Init(int healthPoint, float damage, GameObject[] waypoints/*List<GameObject> waypoints*/)
+    public override void Init(int healthPoint, float damage, Path path)
     {
         _healthPoint = healthPoint;
         _damage = damage;
-        _waypoints = waypoints;
-    }
-
-    public override void FindWay(string _nameOfSpawnpoints)
-    {
-        _nameOfSpawnpoints = "SpawnpointForFlying";
-        _waypoints = GameObject.FindGameObjectsWithTag(_nameOfSpawnpoints);
+        _path = path;
     }
 }
