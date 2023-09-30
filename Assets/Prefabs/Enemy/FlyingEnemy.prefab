@@ -547,5 +547,5 @@ MonoBehaviour:
   _healthPoint: 100
   _damage: 1
   _healthBar: {fileID: 6639430956374097999}
-  _waypoints: []
+  _path: {fileID: 11400000, guid: bd1d921bf8a546547a51e65e662812bb, type: 2}
   _speed: 2

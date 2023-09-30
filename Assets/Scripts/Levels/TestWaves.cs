@@ -1,10 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class TestWaves : MonoBehaviour
 {
     private WaveSpawner _waveSpawner;
+    public event UnityAction<bool> IsConfirmAction;
 
     private void Awake()
     {

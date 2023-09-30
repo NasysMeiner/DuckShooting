@@ -8,11 +8,16 @@ public class WaveSpawner : MonoBehaviour
     private int _currentEnemyIndex;
     private int _currentWaveIndex;
     private int _enemiesLeftToSpawn;
-
+    private LevelData _level;
     private void Start()
     {
         _enemiesLeftToSpawn = _waves[0].WaveSettings.Length;
         LaunchWave();
+    }
+
+    private void Awake()
+    {
+        _level = Resources.Load<LevelData>($"Levels/Level1");
     }
 
     private IEnumerator SpawnEnemyInWave()

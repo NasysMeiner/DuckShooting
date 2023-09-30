@@ -901,10 +901,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8260442980923517338}
-  - component: {fileID: 4423135919795101327}
   - component: {fileID: 3085678632886662267}
   - component: {fileID: 382227932150328214}
-  - component: {fileID: 3733189597204922086}
   m_Layer: 0
   m_Name: StandartEnemy
   m_TagString: Enemy
@@ -930,20 +928,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4423135919795101327
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1275452048985735654}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1ccbe71d4839a034db21a0ee8cda2838, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _healthPoint: 1
-  _damage: 1
 --- !u!54 &3085678632886662267
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -978,25 +962,16 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1275452048985735654}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1ccbe71d4839a034db21a0ee8cda2838, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _healthPoint: 1
   _damage: 1
---- !u!114 &3733189597204922086
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1275452048985735654}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 79f615c26b8701749b1a4a9c3d534940, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  _healthBar: {fileID: 0}
+  _waypoints: []
+  _speed: 2
 --- !u!1 &1430119164203128290
 GameObject:
   m_ObjectHideFlags: 0
