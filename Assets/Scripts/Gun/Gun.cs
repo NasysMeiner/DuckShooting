@@ -1,5 +1,6 @@
 using System.Threading.Tasks;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Gun : MonoBehaviour, IGun
 {
@@ -10,17 +11,28 @@ public class Gun : MonoBehaviour, IGun
     private Bullet _bullet;
     private float _timeShot = 1;
     private StockBullet _stockBullet;
+    private string _name;
+    private Sprite _sprite;
+    private bool _isActive = false;
 
     private int _millisekundy = 1000;
 
     public Bullet Bullet => _bullet;
     public Transform PointPosition => _pointPosition;
+    public string Name => _name;
+    public Sprite Sprite => _sprite;
+    public bool IsActive => _isActive;
 
-    public void Init(Bullet bullet, float timeShot, StockBullet stockBullet)
+    public event UnityAction ActiveGun;
+    public event UnityAction DeactiveGun;
+
+    public void Init(Bullet bullet, float timeShot, StockBullet stockBullet, string name, Sprite sprite)
     {
         _bullet = bullet;
         _timeShot = timeShot;
         _stockBullet = stockBullet;
+        _name = name;
+        _sprite = sprite;
     }
 
     public void SetTypeBullet(Bullet bullet)
@@ -51,6 +63,18 @@ public class Gun : MonoBehaviour, IGun
     public virtual Bullet SetTypeDamage(Bullet bullet)
     {
         return bullet;
+    }
+
+    public void Activate()
+    {
+        _isActive = true;
+        ActiveGun?.Invoke();
+    }
+
+    public void Deactivate()
+    {
+        _isActive = false;
+        DeactiveGun?.Invoke();
     }
 
     private void TakeShot()
