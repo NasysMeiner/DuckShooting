@@ -52,18 +52,37 @@ public class CameraWindow : MonoBehaviour
 
             CheckPath(speed, out Vector3 direction);
 
-            transform.position = new Vector3(camera.x + (target.x - camera.x) * direction.x, camera.y + (target.y - camera.y) * direction.y, camera.z + (target.z - camera.z) * direction.z);
+            Vector3 newPosition = new Vector3(camera.x + (target.x - camera.x) * direction.x, camera.y + (target.y - camera.y) * direction.y, camera.z + (target.z - camera.z) * direction.z);
+
+            transform.position = CheckPoint(newPosition);
         }
     }
 
     private void CheckPath(float speed, out Vector3 direction)
     {
         direction = new Vector3(speed, speed, speed);
- 
-        if (transform.position.x + 2 * _direction.x * Time.fixedDeltaTime > _rightPoint.position.x || transform.position.x + 2 * _direction.x * Time.fixedDeltaTime < _leftPoint.position.x)
+
+        if (transform.position.x + _direction.x * Time.fixedDeltaTime * speed > _rightPoint.position.x || transform.position.x + _direction.x * Time.fixedDeltaTime * speed < _leftPoint.position.x)
             direction.x = 0;
-        
-        if(transform.position.y + 2 * _direction.y * Time.fixedDeltaTime > _upPoint.position.y || transform.position.y + 2 * _direction.y * Time.fixedDeltaTime < _downPoint.position.y)
+
+        if (transform.position.y + _direction.y * Time.fixedDeltaTime * speed > _upPoint.position.y || transform.position.y + _direction.y * Time.fixedDeltaTime * speed < _downPoint.position.y)
             direction.y = 0;
+    }
+
+    private Vector3 CheckPoint(Vector3 position)
+    {
+        if(position.x < _leftPoint.position.x)
+            position.x = _leftPoint.position.x;
+
+        if(position.x > _rightPoint.position.x)
+            position.x = _rightPoint.position.x;
+
+        if(position.y > _upPoint.position.y)
+            position.y = _upPoint.position.y;
+
+        if(position.y < _downPoint.position.y)
+            position.y = _downPoint.position.y;
+
+        return position;
     }
 }
