@@ -14,8 +14,6 @@ public class CameraWindow : MonoBehaviour
     private bool _isMovementCamera = false;
     private Vector3 _direction => (new Vector3(_player.transform.position.x - transform.position.x, _player.transform.position.y - transform.position.y, _player.transform.position.z - transform.position.z)).normalized;
 
-    private bool _isInBounds => _leftPoint.position.x < transform.position.x + _direction.x * _startSpeed && _rightPoint.position.x > transform.position.x + _direction.x * _startSpeed && _upPoint.position.y > transform.position.y + _direction.y * _startSpeed && _downPoint.position.y < transform.position.y + _direction.y * _startSpeed ? true : false;
-
     private void OnTriggerExit(Collider other)
     {
         if (other.gameObject.TryGetComponent(out Movement player))
