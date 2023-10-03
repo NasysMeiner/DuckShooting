@@ -4,35 +4,13 @@ using DG.Tweening;
 
 public class SideMenuPanels1 : MonoBehaviour
 {
-    [SerializeField] private GameObject[] _anotherActiveButtons;
-    [SerializeField] private Transform _panel;
-    [SerializeField] private Vector2 _startPosition;
-    [SerializeField] private Vector2 _endPosition;
+    [SerializeField] private GameObject[] _anotherPanels;
 
-    private void OnEnable()
+    public void OffPanels()
     {
-        _panel.DOLocalMove(_endPosition, 0.4f).SetUpdate(UpdateType.Normal, true);
-    }
-
-    private void FixedUpdate()
-    {
-        Cancel();
-    }
-
-    private void Cancel()
-    {
-        for (int i = 0; i < _anotherActiveButtons.Length; i++)
+        for (int i = 0; i < _anotherPanels.Length; i++)
         {
-            if (_anotherActiveButtons[i].activeSelf == true)
-            {
-                _panel.DOLocalMove(_startPosition, 0.4f).SetUpdate(UpdateType.Normal, true).OnComplete(Close);
-            }
+            _anotherPanels[i].SetActive(false);
         }
-    }
-
-    private void Close()
-    {
-        _panel.transform.localPosition = new Vector2(0f, -1151.6f);
-        _panel.gameObject.SetActive(false);
     }
 }
