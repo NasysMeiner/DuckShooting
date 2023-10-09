@@ -1,11 +1,11 @@
 {
   "dependencies": {
     "com.agava.yandexgames": {
-      "version": "https://github.com/forcepusher/com.agava.yandexgames.git#13.2.0",
+      "version": "https://github.com/forcepusher/com.agava.yandexgames.git#15.0.0",
       "depth": 0,
       "source": "git",
       "dependencies": {},
-      "hash": "fa31f21513b73c1cf117bf8d9fccd6f01b2772b7"
+      "hash": "f68ebcb5e983959239896b60db5952bdf9447c72"
     },
     "com.unity.ai.navigation": {
       "version": "1.1.4",
