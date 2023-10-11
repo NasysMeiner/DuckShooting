@@ -8,4 +8,6 @@ public class Constantes : MonoBehaviour
     public const string StrGame = "Game";
     public const string StrMusic = "Music";
     public const string StrSFX = "SFX";
+    public const string StrCountMoney = "Money";
+    public const string StrCountLevel = "Level";
 }
