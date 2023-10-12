@@ -4,4 +4,5 @@ public enum PlayerCharacterName
     Second,
     Third,
     Fourth,
+    Fifth,
 }
