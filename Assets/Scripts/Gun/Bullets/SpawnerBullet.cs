@@ -7,7 +7,7 @@ public class SpawnerBullet : MonoBehaviour
 {
     [SerializeField] private bool _isOnSpawn = true;
     [SerializeField] private List<Form> _bullets;
-    [SerializeField] private StockBullet _bulletStock;
+    [SerializeField] private AmmoBag _bulletStock;
 
     private void Start()
     {

@@ -13,6 +13,8 @@ public class UIShopCell : MonoBehaviour
 
     private Gun _gun = null;
 
+    public Gun Gun => _gun;
+
     public event UnityAction<Gun> ChangeGun;
 
     private void OnEnable()
@@ -26,8 +28,11 @@ public class UIShopCell : MonoBehaviour
 
     private void OnDisable()
     {
-        _gun.DeactiveGun -= DeactiveButton;
-        _gun.ActiveGun -= ActiveButton;
+        if (_gun != null)
+        {
+            _gun.DeactiveGun -= DeactiveButton;
+            _gun.ActiveGun -= ActiveButton;
+        }   
     }
 
     public void Init(Gun gun)
@@ -46,7 +51,6 @@ public class UIShopCell : MonoBehaviour
 
     private void ActiveButton()
     {
-        
         _buttonGun.interactable = false;
     }
 

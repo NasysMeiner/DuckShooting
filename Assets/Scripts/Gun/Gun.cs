@@ -10,7 +10,7 @@ public class Gun : MonoBehaviour, IGun
     private bool _isStart = false;
     private Bullet _bullet;
     private float _timeShot = 1;
-    private StockBullet _stockBullet;
+    private AmmoBag _ammoBag;
     private string _name;
     private Sprite _sprite;
     private bool _isActive = false;
@@ -26,11 +26,11 @@ public class Gun : MonoBehaviour, IGun
     public event UnityAction ActiveGun;
     public event UnityAction DeactiveGun;
 
-    public void Init(Bullet bullet, float timeShot, StockBullet stockBullet, string name, Sprite sprite)
+    public void Init(Bullet bullet, float timeShot, AmmoBag ammoBag, string name, Sprite sprite)
     {
         _bullet = bullet;
         _timeShot = timeShot;
-        _stockBullet = stockBullet;
+        _ammoBag = ammoBag;
         _name = name;
         _sprite = sprite;
     }
@@ -57,7 +57,7 @@ public class Gun : MonoBehaviour, IGun
 
     public Bullet SearchBullet()
     {
-        return _stockBullet.SearchFreeBullet();
+        return _ammoBag.SearchFreeBullet();
     }
 
     public virtual Bullet SetTypeDamage(Bullet bullet)

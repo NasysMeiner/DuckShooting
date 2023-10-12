@@ -4,34 +4,33 @@ using UnityEngine;
 
 public class ShopGun : MonoBehaviour
 {
-    [SerializeField] private StockBullet _stockBullet;
+    [SerializeField] private AmmoBag _stockBullet;
     [SerializeField] private ArsenalPlayer _arsenalPlayer;
     [SerializeField] private UIShopCell _prefabUIShopCell;
     [SerializeField] private Transform _transformUIShop;
 
     private List<CellGun> _guns = new List<CellGun>();
+    private List<UIShopCell> _cellsShop = new List<UIShopCell>();
     private int _currentSlotChange = 0;
 
-    public StockBullet StockBullet => _stockBullet;
+    public AmmoBag StockBullet => _stockBullet;
 
     private void OnDisable()
     {
-        foreach (CellGun cellGun in _guns)
+        foreach (UIShopCell cellShop in _cellsShop)
         {
-            cellGun.UIShopCell.ChangeGun -= OnChangeGun;
+            cellShop.ChangeGun -= OnChangeGun;
         }
     }
 
     public void PlaceInCell(Gun gun)
     {
-        UIShopCell NewUIShopCell = Instantiate(_prefabUIShopCell, _transformUIShop);
-        NewUIShopCell.Init(gun);
-        NewUIShopCell.ChangeGun += OnChangeGun;
+        UIShopCell cellShop = Instantiate(_prefabUIShopCell, _transformUIShop);
+        cellShop.Init(gun);
+        cellShop.ChangeGun += OnChangeGun;
+        _cellsShop.Add(cellShop);
 
-        CellGun cellGun = new CellGun(gun, NewUIShopCell);
-        _guns.Add(cellGun);
-
-        SetGunPlayer(cellGun.Gun);
+        SetGunPlayer(gun);
     }
 
     public void SetActiveSlot(int index)
@@ -55,14 +54,14 @@ public class ShopGun : MonoBehaviour
 
     private void ReturnGun(Gun gun)
     {
-        foreach(CellGun cellGun in _guns)
+        foreach(UIShopCell cellShop in _cellsShop)
         {
-            if(cellGun.Gun == gun)
+            if(cellShop.Gun == gun)
             {
-                cellGun.Gun.Deactivate();
-                cellGun.Gun.StopFire();
-                cellGun.Gun.transform.position = transform.position;
-                cellGun.Gun.transform.SetParent(transform);
+                cellShop.Gun.Deactivate();
+                cellShop.Gun.StopFire();
+                cellShop.Gun.transform.position = transform.position;
+                cellShop.Gun.transform.SetParent(transform);
             }
         }
     }

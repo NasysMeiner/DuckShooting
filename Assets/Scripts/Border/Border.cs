@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Border : MonoBehaviour
 {
-    [SerializeField] private StockBullet _bulletStock;
+    [SerializeField] private AmmoBag _bulletStock;
 
     private void OnTriggerEnter(Collider collider)
     {

@@ -6,13 +6,13 @@ using UnityEngine.UI;
 public class SlotsGunPlayer : MonoBehaviour
 {
     [SerializeField] private ShopGun _shopGun;
-    [SerializeField] private List<Button> _slots;
+    [SerializeField] private List<SlotGun> _slots;
 
     private int _currentSlotIndex = 0;
 
     private void Awake()
     {
-        ChangeActiveSlot(0);
+        ChangeActiveSlot(_currentSlotIndex);
     }
 
     public void ChangeActiveSlot(int index)
@@ -23,10 +23,10 @@ public class SlotsGunPlayer : MonoBehaviour
 
     public void SetActive(int newIndex)
     {
-        if(newIndex != _currentSlotIndex)
-            _slots[_currentSlotIndex].interactable = true;
+        if (newIndex != _currentSlotIndex)
+            _slots[_currentSlotIndex].Off();
 
-        _slots[newIndex].interactable = false;
+        _slots[newIndex].Press();
         _currentSlotIndex = newIndex;
     }
 }
