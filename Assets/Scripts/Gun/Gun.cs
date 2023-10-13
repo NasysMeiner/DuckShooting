@@ -17,11 +17,9 @@ public class Gun : MonoBehaviour, IGun
 
     private int _millisekundy = 1000;
 
-    public Bullet Bullet => _bullet;
     public Transform PointPosition => _pointPosition;
     public string Name => _name;
     public Sprite Sprite => _sprite;
-    public bool IsActive => _isActive;
 
     public event UnityAction ActiveGun;
     public event UnityAction DeactiveGun;
@@ -33,11 +31,6 @@ public class Gun : MonoBehaviour, IGun
         _ammoBag = ammoBag;
         _name = name;
         _sprite = sprite;
-    }
-
-    public void SetTypeBullet(Bullet bullet)
-    {
-        _bullet = bullet;
     }
 
     public void StartFire()
