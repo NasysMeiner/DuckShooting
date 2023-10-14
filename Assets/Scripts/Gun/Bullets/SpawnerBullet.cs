@@ -7,7 +7,7 @@ public class SpawnerBullet : MonoBehaviour
 {
     [SerializeField] private bool _isOnSpawn = true;
     [SerializeField] private List<Form> _bullets;
-    [SerializeField] private AmmoBag _bulletStock;
+    [SerializeField] private AmmoBag _ammoBag;
 
     private void Start()
     {
@@ -22,9 +22,9 @@ public class SpawnerBullet : MonoBehaviour
             for(int i = 0; i < form.Number; i++)
             {
                 Bullet newBullet = Instantiate(form.Prefab, transform.localPosition, Quaternion.identity);
-                newBullet.Init(form.Speed, form.Damage);
+                newBullet.Init(form.Speed, form.Damage, _ammoBag);
                 newBullet.transform.SetParent(transform);
-                _bulletStock.AddBullet(newBullet);
+                _ammoBag.AddBullet(newBullet);
             }
         }
     }

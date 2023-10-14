@@ -1,5 +1,5 @@
 public interface IBullet
 {
     void SetVelocity();
-    int MakeDamage();
+    void MakeDamage(int damage);
 }

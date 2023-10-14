@@ -23,10 +23,10 @@ public class ShopGun : MonoBehaviour
         }
     }
 
-    public void PlaceInCell(Gun gun)
+    public void PlaceInCell(Gun gun, FormGun formGun)
     {
         UIShopCell cellShop = Instantiate(_prefabUIShopCell, _transformUIShop);
-        cellShop.Init(gun);
+        cellShop.Init(gun, formGun);
         cellShop.ChangeGun += OnChangeGun;
         _cellsShop.Add(cellShop);
 

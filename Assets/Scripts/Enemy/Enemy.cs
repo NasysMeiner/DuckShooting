@@ -6,7 +6,7 @@ using UnityEngine.AI;
 
 public abstract class Enemy : MonoBehaviour
 {
-    [SerializeField] protected int _healthPoint = 100;
+    [SerializeField] protected float _healthPoint = 100;
     [SerializeField] protected float _damage = 1f;
     [SerializeField] protected Slider _healthBar;
     [SerializeField] protected Path _path;
@@ -26,7 +26,12 @@ public abstract class Enemy : MonoBehaviour
         _healthBar.value = _healthPoint;
     }
 
-    public abstract void Init(int healthPoint, float damage, Path path);
+    public virtual void TakeDamage(float damage)
+    {
+        _healthPoint -= damage;
+    }
+
+    public abstract void Init(float healthPoint, float damage, Path path);
 
     private void Movement()
     {

@@ -7,30 +7,24 @@ public class Gun : MonoBehaviour, IGun
     [SerializeField] private ShotPoint _shotPoint;
     [SerializeField] private Transform _pointPosition;
 
-    private bool _isStart = false;
-    private Bullet _bullet;
     private float _timeShot = 1;
-    private AmmoBag _ammoBag;
-    private string _name;
-    private Sprite _sprite;
-    private bool _isActive = false;
+    private float _damage = 1;
+    private int _storeSize = 10;
 
+    private AmmoBag _ammoBag;
+
+    private bool _isStart = false;
     private int _millisekundy = 1000;
 
     public Transform PointPosition => _pointPosition;
-    public string Name => _name;
-    public Sprite Sprite => _sprite;
 
     public event UnityAction ActiveGun;
     public event UnityAction DeactiveGun;
 
-    public void Init(Bullet bullet, float timeShot, AmmoBag ammoBag, string name, Sprite sprite)
+    public void Init(float timeShot, AmmoBag ammoBag)
     {
-        _bullet = bullet;
         _timeShot = timeShot;
         _ammoBag = ammoBag;
-        _name = name;
-        _sprite = sprite;
     }
 
     public void StartFire()
@@ -60,13 +54,11 @@ public class Gun : MonoBehaviour, IGun
 
     public void Activate()
     {
-        _isActive = true;
         ActiveGun?.Invoke();
     }
 
     public void Deactivate()
     {
-        _isActive = false;
         DeactiveGun?.Invoke();
     }
 

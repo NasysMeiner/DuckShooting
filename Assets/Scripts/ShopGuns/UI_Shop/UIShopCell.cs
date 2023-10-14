@@ -35,13 +35,14 @@ public class UIShopCell : MonoBehaviour
         }   
     }
 
-    public void Init(Gun gun)
+    public void Init(Gun gun, FormGun formGun)
     {
         _gun = gun;
         _gun.DeactiveGun += DeactiveButton;
         _gun.ActiveGun += ActiveButton;
-        _iconGun.sprite = gun.Sprite;
-        _name.text = gun.Name;
+
+        _iconGun.sprite = formGun.IconGun;
+        _name.text = formGun.Name;
     }
 
     public void ClickButton()

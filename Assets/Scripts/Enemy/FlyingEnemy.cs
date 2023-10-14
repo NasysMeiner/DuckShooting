@@ -4,7 +4,12 @@ using UnityEngine;
 
 public class FlyingEnemy : Enemy
 {
-    public override void Init(int healthPoint, float damage, Path path)
+    public override void TakeDamage(float damage)
+    {
+        base.TakeDamage(damage);
+    }
+
+    public override void Init(float healthPoint, float damage, Path path)
     {
         _healthPoint = healthPoint;
         _damage = damage;
