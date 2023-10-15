@@ -13,6 +13,7 @@ public abstract class Enemy : MonoBehaviour
     [SerializeField] protected float _speed = 2;
 
     protected int _index;
+    protected EnemyBag _enemyBag;
 
     private void FixedUpdate()
     {
@@ -31,7 +32,15 @@ public abstract class Enemy : MonoBehaviour
         _healthPoint -= damage;
     }
 
-    public abstract void Init(float healthPoint, float damage, Path path);
+    public virtual void Init(float healthPoint, float damage, float speed, Path path, EnemyBag enemyBag)
+    {
+        _healthPoint = healthPoint;
+        _damage = damage;
+        _speed = speed;
+        _path = path;
+        _enemyBag = enemyBag;
+
+    }
 
     private void Movement()
     {

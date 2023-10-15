@@ -8,11 +8,4 @@ public class FlyingEnemy : Enemy
     {
         base.TakeDamage(damage);
     }
-
-    public override void Init(float healthPoint, float damage, Path path)
-    {
-        _healthPoint = healthPoint;
-        _damage = damage;
-        _path = path;
-    }
 }
