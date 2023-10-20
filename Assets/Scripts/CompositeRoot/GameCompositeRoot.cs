@@ -2,12 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameStart : MonoBehaviour
+public class GameCompositeRoot : CompositeRoot
 {
     [SerializeField] private PlayerData _playerData;
     [SerializeField] private GarageOfHumans _garage;
 
-    private void Awake()
+    public override void Compose()
     {
         _playerData.Init();
         StartCoroutine(WaitForLoadPlayerData());

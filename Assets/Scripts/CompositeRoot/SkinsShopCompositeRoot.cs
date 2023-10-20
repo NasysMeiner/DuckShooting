@@ -1,14 +1,15 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-public class ShopStart : MonoBehaviour
+public class SkinsShopCompositeRoot : CompositeRoot
 {
     [SerializeField] private PlayerData _playerData;
     [SerializeField] private ShopTest _shop;
     [SerializeField] private TMP_Text _money;
 
-    private void Awake()
+    public override void Compose()
     {
         _playerData.Init();
         StartCoroutine(WaitForLoadPlayerData());
