@@ -1,8 +1,7 @@
 using System;
 using UnityEngine;
+using System.Collections.Generic;
 
-[RequireComponent(typeof(Rigidbody))]
-[RequireComponent(typeof(CapsuleCollider))]
 public class Movement : MonoBehaviour
 {
     [SerializeField] private float _speed = 0.3f;
@@ -10,8 +9,8 @@ public class Movement : MonoBehaviour
     [SerializeField] private float _jumpForce = 5f;
     [SerializeField] private LayerMask GroundLayer = 1;
 
-    private Rigidbody _rigidbody;
-    private CapsuleCollider _collider;
+    [SerializeField] private List<Rigidbody> _rigidbodys;
+    [SerializeField] private List<CapsuleCollider> _colliders;
 
     public float Speed => _speed;
 
@@ -19,9 +18,14 @@ public class Movement : MonoBehaviour
     {
         get
         {
-            var bottomCenterPoint = new Vector3(_collider.bounds.center.x, _collider.bounds.min.y, _collider.bounds.center.z);
+            foreach (var _collider in _colliders)
+            {
+                var bottomCenterPoint = new Vector3(_collider.bounds.center.x, _collider.bounds.min.y, _collider.bounds.center.z);
 
-            return Physics.CheckCapsule(_collider.bounds.center, bottomCenterPoint, _collider.bounds.size.x / 2 * 0.1f, GroundLayer);
+                return Physics.CheckCapsule(_collider.bounds.center, bottomCenterPoint, _collider.bounds.size.x / 2 * 0.1f, GroundLayer);
+            }
+
+            return true;
         }
     }
 
@@ -38,8 +42,7 @@ public class Movement : MonoBehaviour
 
     void Start()
     {
-        _rigidbody = GetComponent<Rigidbody>();
-        _collider = GetComponent<CapsuleCollider>(); //GroundLayer != gameObject.layer
+        //_collider = GetComponent<CapsuleCollider>(); //GroundLayer != gameObject.layer
     }
 
     void FixedUpdate()
@@ -56,10 +59,13 @@ public class Movement : MonoBehaviour
         }
         else
         {
-            if (Math.Abs(_rigidbody.velocity.x) >= _maxSpeed)
-                _rigidbody.velocity = new Vector3(_maxSpeed * _rigidbody.velocity.normalized.x, _rigidbody.velocity.y, _rigidbody.velocity.z);
+            foreach(var _rigidbody in _rigidbodys)
+            {
+                if (Math.Abs(_rigidbody.velocity.x) >= _maxSpeed)
+                    _rigidbody.velocity = new Vector3(_maxSpeed * _rigidbody.velocity.normalized.x, _rigidbody.velocity.y, _rigidbody.velocity.z);
 
-            _rigidbody.AddForce(_movementVector * _speed, ForceMode.Impulse);
+                _rigidbody.AddForce(_movementVector * _speed, ForceMode.Impulse);
+            }
         }
            
     }
@@ -72,9 +78,12 @@ public class Movement : MonoBehaviour
         }
         else
         {
-            if (_isGrounded && (Input.GetAxis("Jump") > 0))
+            foreach (var _rigidbody in _rigidbodys)
             {
-                _rigidbody.AddForce(Vector3.up * _jumpForce, ForceMode.Impulse);
+                if (_isGrounded && (Input.GetAxis("Jump") > 0))
+                {
+                    _rigidbody.AddForce(Vector3.up * _jumpForce, ForceMode.Impulse);
+                }
             }
         }
     }

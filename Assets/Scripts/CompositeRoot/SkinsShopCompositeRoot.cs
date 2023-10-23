@@ -35,6 +35,7 @@ public class SkinsShopCompositeRoot : CompositeRoot
 
     private void ApplyGameSettings()
     {
+        Debug.Log("Данные загружены");
         _playerData.MoneyChanged += InstanceOnMoneyChanged;
         _shop.Init();
         _money.text = PlayerData.Instance.Money.ToString();
