@@ -20,11 +20,21 @@ MonoBehaviour:
     _image: {fileID: 21300000, guid: 708d166a184134c969e23cbafab6e306, type: 3}
   - _playerCharacterName: 1
     _nameKey: Second
-    cost: 100
+    cost: 0
     _isBuyForAd: 0
     _image: {fileID: 21300000, guid: d1641e5132763437f82b20a4fa54f554, type: 3}
   - _playerCharacterName: 2
     _nameKey: Third
-    cost: 100
+    cost: 0
     _isBuyForAd: 0
     _image: {fileID: 21300000, guid: 132b597f29f68423e9100eb1b92cee7d, type: 3}
+  - _playerCharacterName: 3
+    _nameKey: Fourth
+    cost: 4
+    _isBuyForAd: 1
+    _image: {fileID: 21300000, guid: eac2f707e8c09496eb9557c6ad0f8052, type: 3}
+  - _playerCharacterName: 4
+    _nameKey: Fifth
+    cost: 500
+    _isBuyForAd: 0
+    _image: {fileID: 21300000, guid: eac2f707e8c09496eb9557c6ad0f8052, type: 3}

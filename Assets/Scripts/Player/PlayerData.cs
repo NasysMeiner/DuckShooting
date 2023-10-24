@@ -172,4 +172,16 @@ public class PlayerData : MonoBehaviour, IDisposable
         PlayerPrefs.SetInt(Constantes.StrCountMoney, _money);
         PlayerPrefs.Save();
     }
+
+
+#if UNITY_EDITOR
+    [ContextMenu("Reset Data")]
+    private void ResetData()
+    {
+        _selectedCharacter = SelectedCharacterDefault;
+        LoadConditionsFromPriceList();
+
+        SaveData();
+    }
+#endif
 }

@@ -48,14 +48,14 @@ public class ShopTest : MonoBehaviour
         _currentPrice = price;
 
         if (PlayerData.Instance.ConditionsForCharacters[characterType] == 0)
-            ChangeSelectCharacter();
+            ChangeSelectCar();
         else if (price.IsBuyForAd)
             ShowMessageBoxWatchAd();
         else
             TryBuyCharacter();
     }
 
-    private void ChangeSelectCharacter()
+    private void ChangeSelectCar()
     {
         foreach (var product in _products)
             product.UnSelect();
@@ -66,9 +66,9 @@ public class ShopTest : MonoBehaviour
 
     private void TryBuyCharacter()
     {
-        bool canPay = PlayerData.Instance.Money - _currentPrice.Cost >= 0;
+        bool ñanPay = PlayerData.Instance.Money - _currentPrice.Cost >= 0;
 
-        if (canPay)
+        if (ñanPay)
             ShowMessageBoxBuy();
         else
             _messageBoxNotEnoughMoney.ShowMessageBox();
