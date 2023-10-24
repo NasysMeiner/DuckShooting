@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections.Generic;
 
 public class CameraWindow : MonoBehaviour
 {
@@ -9,20 +10,35 @@ public class CameraWindow : MonoBehaviour
     [SerializeField] private Transform _upPoint;
     [SerializeField] private Transform _downPoint;
 
-    private Movement _player;
+    [SerializeField] private List<GameObject> _players;
     private bool _isInside = true;
     private bool _isMovementCamera = false;
-    private Vector3 _direction => (new Vector3(_player.transform.position.x - transform.position.x, _player.transform.position.y - transform.position.y, _player.transform.position.z - transform.position.z)).normalized;
+    //private Vector3 _direction => (new Vector3(_player.transform.position.x - transform.position.x, _player.transform.position.y - transform.position.y, _player.transform.position.z - transform.position.z)).normalized;
+    private Vector3 _direction;
 
-    private void OnTriggerExit(Collider other)
+    private void Start()
     {
-        if (other.gameObject.TryGetComponent(out Movement player))
+        _isInside = false;
+        _isMovementCamera = true;
+
+        foreach (var _player in _players)
         {
-            _player = player;
-            _isInside = false;
-            _isMovementCamera = true;
+            if (_player.gameObject.activeSelf == true)
+            {
+                Vector3 _direction = new Vector3(_player.transform.position.x - transform.position.x, _player.transform.position.y - transform.position.y, _player.transform.position.z - transform.position.z).normalized;
+            }
         }
     }
+
+    //private void OnTriggerExit(Collider other)
+    //{
+    //    if (other.gameObject.TryGetComponent(out Movement player))
+    //    {
+    //        _player = player;
+    //        _isInside = false;
+    //        _isMovementCamera = true;
+    //    }
+    //}
     
     private void OnTriggerEnter(Collider other)
     {
@@ -32,8 +48,14 @@ public class CameraWindow : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if(_player != null && transform != null)
-            Move(transform.position, _player.transform.position);
+        foreach (var _player in _players)
+        {
+            if (_player.gameObject.activeSelf == true)
+            {
+                if (_player != null && transform != null)
+                    Move(transform.position, _player.transform.position);
+            }
+        }
     }
 
     private void Move(Vector3 camera, Vector3 target)
