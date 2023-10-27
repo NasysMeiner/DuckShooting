@@ -48,6 +48,8 @@ public abstract class Enemy : MonoBehaviour
         Vector3 newPosition = Vector3.MoveTowards(transform.position, destination, _speed * Time.deltaTime);
         transform.position = newPosition;
         float distance = Vector3.Distance(transform.position, destination);
+        Quaternion rotation = Quaternion.LookRotation(destination);
+        transform.rotation = rotation;
 
         if (distance <= 0.05)
         {
