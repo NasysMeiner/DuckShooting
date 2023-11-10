@@ -10,6 +10,7 @@ public class Gun : MonoBehaviour, IGun
     private float _timeShot = 1;
     private float _damage = 1;
     private int _storeSize = 10;
+    private float _equipmentTime;
 
     private AmmoBag _ammoBag;
 
@@ -17,14 +18,16 @@ public class Gun : MonoBehaviour, IGun
     private int _millisekundy = 1000;
 
     public Transform PointPosition => _pointPosition;
+    public float EquipmentTime => _equipmentTime;
 
     public event UnityAction ActiveGun;
     public event UnityAction DeactiveGun;
 
-    public void Init(float timeShot, AmmoBag ammoBag)
+    public void Init(float timeShot, AmmoBag ammoBag, float equipmentTime)
     {
         _timeShot = timeShot;
         _ammoBag = ammoBag;
+        _equipmentTime = equipmentTime;
     }
 
     public void StartFire()

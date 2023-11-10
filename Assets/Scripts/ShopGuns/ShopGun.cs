@@ -1,19 +1,20 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class ShopGun : MonoBehaviour
 {
-    [SerializeField] private AmmoBag _stockBullet;
+    [SerializeField] private AmmoBag _ammoBag;
     [SerializeField] private ArsenalPlayer _arsenalPlayer;
     [SerializeField] private UIShopCell _prefabUIShopCell;
     [SerializeField] private Transform _transformUIShop;
 
-    private List<CellGun> _guns = new List<CellGun>();
+    private List<ShopCellGun> _guns = new List<ShopCellGun>();
     private List<UIShopCell> _cellsShop = new List<UIShopCell>();
     private int _currentSlotChange = 0;
 
-    public AmmoBag StockBullet => _stockBullet;
+    public AmmoBag StockBullet => _ammoBag;
 
     private void OnDisable()
     {
@@ -28,9 +29,14 @@ public class ShopGun : MonoBehaviour
         UIShopCell cellShop = Instantiate(_prefabUIShopCell, _transformUIShop);
         cellShop.Init(gun, formGun);
         cellShop.ChangeGun += OnChangeGun;
-        _cellsShop.Add(cellShop);
 
-        SetGunPlayer(gun);
+        ShopCellGun cellGun = new ShopCellGun(gun, false, cellShop);
+        _guns.Add(cellGun);
+
+
+        //_cellsShop.Add(cellShop);
+
+        //SetGunPlayer(gun);
     }
 
     public void SetActiveSlot(int index)
@@ -38,18 +44,33 @@ public class ShopGun : MonoBehaviour
         _currentSlotChange = index;
     }
 
-    public void SetGunPlayer(Gun gun)
+    public SlotPlayerGun SetGunPlayer(IconSlot iconSlot, Transform point)
     {
-        int index = _arsenalPlayer.SearchNullSlots();
+        foreach(ShopCellGun cellShop in _guns)
+        {
+            if(cellShop.IsEquip == false)
+            {
+                var newSlot = new SlotPlayerGun(cellShop.Gun, _ammoBag.StandartBullet, iconSlot, point);
+                cellShop.EquipGun();
+                return newSlot;
+            }
+        }
 
-        if (index < 0)
-            return;
+        return null;
 
-        gun.Activate();
-        _arsenalPlayer.SetGunSlot(index, gun, out Gun oldGun);
 
-        if(oldGun != null)
-            ReturnGun(oldGun);
+
+
+        //int index = _arsenalPlayer.SearchNullSlots();
+
+        //if (index < 0)
+        //    return;
+
+        //gun.Activate();
+        //_arsenalPlayer.SetGunSlot(index, gun, out Gun oldGun);
+
+        //if(oldGun != null)
+        //    ReturnGun(oldGun);
     }
 
     private void ReturnGun(Gun gun)
@@ -68,10 +89,10 @@ public class ShopGun : MonoBehaviour
 
     private void OnChangeGun(Gun gun)
     {
-        _arsenalPlayer.SetGunSlot(_currentSlotChange, gun, out Gun oldGun);
+        //_arsenalPlayer.SetShopGunSlot(_currentSlotChange, gun, out Gun oldGun);
         gun.Activate();
 
-        if (oldGun != null)
-            ReturnGun(oldGun);
+        //if (oldGun != null)
+        //    ReturnGun(oldGun);
     }
 }

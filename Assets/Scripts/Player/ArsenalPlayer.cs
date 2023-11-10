@@ -1,4 +1,4 @@
-using System.Collections;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using UnityEngine;
@@ -6,28 +6,56 @@ using UnityEngine.UI;
 
 public class ArsenalPlayer : MonoBehaviour
 {
-    [SerializeField] private List<Slot> _slots = new List<Slot>();
+    [Header("Init Components")]
+    [SerializeField] private int _numberSlots = 2;
+    [SerializeField] private List<Transform> _slotPosition = new List<Transform>();
+    [SerializeField] private ShopGun _shopGun;
+
+    [Header("ArsenalPlayer Components")]
     [SerializeField] private Button _changeGunButton;
-    [SerializeField] private float _buttonRollbackTime = 1;
+    [SerializeField] private float _buttonRollbackTime = 0.5f;
 
     private int _millisekundy = 1000;
+    private List<SlotPlayerGun> _slotsPlayer = new List<SlotPlayerGun>();
+    private SlotPlayerGun _currentSlot = null;
 
-    public int SlotCount => _slots.Count;
+    private Queue<SlotPlayerGun> _queueSlot = new Queue<SlotPlayerGun>();
 
-    public void SetGunSlot(int slot, Gun gun, out Gun oldGun)
+    public void InitArsenal(List<IconSlot> iconSlots)
     {
-        oldGun = _slots[slot].SlotGun;
-        _slots[slot].SetGun(gun);
-        SetParent(_slots[slot].SlotGun);
+        if (_numberSlots != iconSlots.Count)
+            throw new NotImplementedException("low slots");
+
+        for (int i = 0; i < _numberSlots; i++)
+        {
+            SlotPlayerGun newSlot = _shopGun.SetGunPlayer(iconSlots[i], _slotPosition[i]);
+
+            if (newSlot == null)
+                throw new NotImplementedException("null slot");
+
+            SetParent(newSlot.Gun);
+            _slotsPlayer.Add(newSlot);
+            _queueSlot.Enqueue(newSlot); 
+        }
+
+        if (_currentSlot == null)
+            SetCurrentSlotGun(_queueSlot.Dequeue());
+    }
+
+    public void SetShopGunSlot(/*int slot, Gun gun, out Gun oldGun*/)
+    {
+        //oldGun = _slots[slot].SlotGun;
+        //_slots[slot].SetGun(gun);
+        //SetParent(_slots[slot].SlotGun);
     }
 
     public int SearchNullSlots()
     {
-        for(int i = 0; i < _slots.Count; i++)
-        {
-            if (_slots[i].SlotGun == null)
-                return i;
-        }
+        //for (int i = 0; i < _slots.Count; i++)
+        //{
+        //    if (_slots[i].SlotGun == null)
+        //        return i;
+        //}
 
         return -1;
     }
@@ -39,14 +67,12 @@ public class ArsenalPlayer : MonoBehaviour
 
     public void StartFire()
     {
-        if(_slots[0].SlotGun != null)
-            _slots[0].SlotGun.StartFire();
+        _currentSlot.Gun.StartFire();
     }
 
     public void StopFire()
     {
-        if(_slots[0].SlotGun != null)
-            _slots[0].SlotGun.StopFire();
+        _currentSlot.Gun.StopFire();
     }
 
     public async void ChangeGun()
@@ -55,18 +81,32 @@ public class ArsenalPlayer : MonoBehaviour
 
         StopFire();
 
-        for (int i = 0; i < _slots.Count - 1; i++)
-        {
-            Gun timeGun = _slots[i].SlotGun;
-            _slots[i].SetGun(_slots[i + 1].SlotGun);
-            _slots[i + 1].SetGun(timeGun);
-        }
+        _currentSlot.InactiveSlot();
+        SlotPlayerGun slotPlayerGun = _queueSlot.Dequeue();
+
+        if(slotPlayerGun == null)
+            throw new NotImplementedException("null slot");
+
+        Transform oldTransform = _currentSlot.TransformPoint;
+        _currentSlot.ChangePointPosition(slotPlayerGun.TransformPoint);
+        _queueSlot.Enqueue(_currentSlot);
+        _currentSlot = slotPlayerGun;
+        _currentSlot.ChangePointPosition(oldTransform);
+        _currentSlot.ActiveSlot();
 
         await Task.Delay((int)(_buttonRollbackTime * _millisekundy));
+
+        await Task.Delay((int)(_currentSlot.Gun.EquipmentTime * _millisekundy));
 
         StartFire();
 
         _changeGunButton.interactable = true;
+    }
+
+    private void SetCurrentSlotGun(SlotPlayerGun slotPlayerGun)
+    {
+        _currentSlot = slotPlayerGun;
+        _currentSlot.ActiveSlot();
     }
 }
 
@@ -74,7 +114,7 @@ public class ArsenalPlayer : MonoBehaviour
 public class Slot
 {
     [SerializeField] private Transform _positionSlot;
-    
+
     private Gun _slotGun;
 
     public Gun SlotGun => _slotGun;

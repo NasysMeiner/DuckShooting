@@ -41,7 +41,6 @@ public abstract class Bullet : MonoBehaviour, IBullet
     public void SetInGun()
     {
         _isInCannon = true;
-
     }
 
     private async void ResetTrailRenderer(TrailRenderer tr)
