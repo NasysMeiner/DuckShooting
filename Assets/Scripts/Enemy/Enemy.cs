@@ -1,8 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.AI;
 
 public abstract class Enemy : MonoBehaviour
 {
@@ -11,7 +8,7 @@ public abstract class Enemy : MonoBehaviour
     [SerializeField] protected Slider _healthBar;
     [SerializeField] protected Path _path;
     [SerializeField] protected float _speed = 2;
-    [SerializeField] protected Rigidbody _rigidbody;
+    [SerializeField] protected bool IsOnActive = false;
 
     protected int _index;
     protected EnemyBag _enemyBag;
@@ -22,7 +19,12 @@ public abstract class Enemy : MonoBehaviour
 
         if(_healthPoint == 0)
         {
-            Destroy(this.gameObject);
+            IsOnActive = false;
+            gameObject.SetActive(false);
+        }
+        else
+        {
+            IsOnActive = true;
         }
 
         _healthBar.value = _healthPoint;

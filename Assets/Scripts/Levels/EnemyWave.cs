@@ -1,9 +1,7 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using System.Threading.Tasks;
 
-public class TestNameNewWaves : MonoBehaviour
+public class EnemyWave : MonoBehaviour
 {
     [SerializeField] private bool _isOnSpawn = true;
     [SerializeField] private List<Enemys> _enemys;
@@ -30,45 +28,6 @@ public class TestNameNewWaves : MonoBehaviour
             }
         }
     }
-
-    //private async void ChangeEnemy()
-    //{
-    //    foreach (Enemys enemy in _enemys)
-    //    {
-    //        for (int i = 0; i < enemy.Number; i++)
-    //        {
-    //            enemy.Prefab.gameObject.SetActive(true);
-    //        }
-    //    }
-
-    //    await Task.Delay((int)(_enemys[_currentWaveIndex].WaitAfterWave * _millisekundy));
-    //}
-
-    //public void Activate()
-    //{
-    //    StartCoroutine(EnemyActivate());
-    //}
-
-    //private IEnumerator EnemyActivate()
-    //{
-    //    WaitForSeconds wait = new WaitForSeconds(0.5f);
-    //    var count = 
-
-    //    while (count > 0)
-    //    {
-    //        count--;
-    //        _enemies[_indexEnemy].gameObject.SetActive(true);
-    //        _indexEnemy++;
-    //        yield return wait;
-    //    }
-
-    //    if (_indexWave < _level.Waves.Count - 1)
-    //    {
-    //        Invoke(nameof(Activate), _level.Waves[_indexWave].WaitAfterWave);
-    //        _indexWave++;
-    //    }
-    //}
-
 }
 
 [System.Serializable]
