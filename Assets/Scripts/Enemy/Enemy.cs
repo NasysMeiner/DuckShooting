@@ -11,11 +11,12 @@ public abstract class Enemy : MonoBehaviour
     [SerializeField] protected Slider _healthBar;
     [SerializeField] protected Path _path;
     [SerializeField] protected float _speed = 2;
+    [SerializeField] protected Rigidbody _rigidbody;
 
     protected int _index;
     protected EnemyBag _enemyBag;
 
-    private void FixedUpdate()
+    private void Update()
     {
         Movement();
 
@@ -45,9 +46,16 @@ public abstract class Enemy : MonoBehaviour
     private void Movement()
     {
         Vector3 destination = _path.Points[_index];
-        Vector3 newPosition = Vector3.MoveTowards(transform.position, destination, _speed * Time.deltaTime);
-        transform.position = newPosition;
+        //Vector3 newPosition = Vector3.MoveTowards(transform.position, destination, _speed * Time.fixedDeltaTime);
+
+        transform.Translate((destination - transform.position).normalized * _speed * Time.deltaTime, Space.World);
+
+        //transform.position = newPosition;
+
+        //Vector3 offset = (destination - _rigidbody.transform.position).normalized * _speed;
+        //_rigidbody.MovePosition(_rigidbody.position + offset);
         float distance = Vector3.Distance(transform.position, destination);
+
         Quaternion rotation = Quaternion.LookRotation(destination);
         transform.rotation = rotation;
 

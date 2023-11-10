@@ -46,12 +46,8 @@ public abstract class Bullet : MonoBehaviour, IBullet
 
     private async void ResetTrailRenderer(TrailRenderer tr)
     {
-        Debug.Log("2");
-
         await Task.Delay(100);
-        Debug.Log("3");
         _ammoBag.AddBullet(this);
-
 
         tr.time = 0.1f;
     }
@@ -65,7 +61,6 @@ public abstract class Bullet : MonoBehaviour, IBullet
             _damage = _standartDamage;
             _rigidbody.velocity = Vector3.zero;
             _isInCannon = false;
-            Debug.Log("1");
             ResetTrailRenderer(_trail);
             
         }
