@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: PathRamEnemy
   m_EditorClassIdentifier: 
   Points:
-  - {x: -2.735, y: 0.222, z: 0}
-  - {x: 2.478, y: 0.222, z: 0}
+  - {x: -2.735, y: 0.222, z: 2}
+  - {x: 2.478, y: 0.222, z: 2}
