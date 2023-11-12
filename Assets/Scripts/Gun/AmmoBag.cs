@@ -3,13 +3,11 @@ using UnityEngine;
 
 public class AmmoBag : MonoBehaviour
 {
-    [SerializeField] private BoxTrigger _boxTrigger;
     [SerializeField] private Bullet _standartBullet;
 
     private List<Bullet> _bullets = new List<Bullet>();
 
     public Bullet StandartBullet => _standartBullet;
-    public BoxTrigger BoxTrigger => _boxTrigger;
 
     public void AddBullet(Bullet bullet)
     {

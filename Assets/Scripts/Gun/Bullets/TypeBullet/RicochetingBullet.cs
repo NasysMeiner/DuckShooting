@@ -13,7 +13,7 @@ public class RicochetingBullet : Bullet
 
     private void OnDisable()
     {
-        _ammoBag.BoxTrigger.ChangeEnemy -= OnChangeEnemy;
+        //_ammoBag.BoxTrigger.ChangeEnemy -= OnChangeEnemy;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -32,7 +32,7 @@ public class RicochetingBullet : Bullet
     {
         base.Init(speed, damage, ammoBag);
 
-        _ammoBag.BoxTrigger.ChangeEnemy += OnChangeEnemy;
+        //_ammoBag.BoxTrigger.ChangeEnemy += OnChangeEnemy;
     }
 
     public override void SetVelocity()
@@ -69,7 +69,7 @@ public class RicochetingBullet : Bullet
 
     private void SearchNextTarget(Enemy enemy)
     {
-        _nextTarget = _ammoBag.BoxTrigger.SearchTarget(enemy);
+        //_nextTarget = _ammoBag.BoxTrigger.SearchTarget(enemy);
 
         if (_numberRicochets == _numberMaxRicochets)
         {

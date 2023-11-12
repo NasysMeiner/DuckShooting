@@ -24,7 +24,7 @@ public class ArsenalPlayer : MonoBehaviour
     public void InitArsenal(List<IconSlot> iconSlots)
     {
         if (_numberSlots != iconSlots.Count)
-            throw new NotImplementedException("low slots");
+            throw new NotImplementedException("low slots || low icon slots");
 
         for (int i = 0; i < _numberSlots; i++)
         {
