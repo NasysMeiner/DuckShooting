@@ -9,7 +9,7 @@ public class StandartBullet : Bullet
         if(other.gameObject.TryGetComponent(out Enemy enemy))
         {
             enemy.TakeDamage((int)_damage);
-            _ammoBag.AddBullet(this);
+            PullOutOfGun();
         }
     }
 }

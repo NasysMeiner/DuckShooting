@@ -2,19 +2,19 @@ using UnityEngine;
 
 public class CameraWindow : MonoBehaviour
 {
-    [SerializeField] private float _startSpeed = 0.0001f;
-    [SerializeField] private float _minusSpeed = 0.0001f;
+    [SerializeField] private float _startSpeed = 1.5f;
+    [SerializeField] private float _minusSpeed = 0.005f;
     [SerializeField] private Transform _pointPlayer;
-    [SerializeField] private Transform _leftPoint;
-    [SerializeField] private Transform _rightPoint;
-    [SerializeField] private Transform _upPoint;
-    [SerializeField] private Transform _downPoint;
+    //[SerializeField] private Transform _leftPoint;
+    //[SerializeField] private Transform _rightPoint;
+    //[SerializeField] private Transform _upPoint;
+    //[SerializeField] private Transform _downPoint;
 
     private Movement _player;
     private bool _isInside = true;
     private bool _isMovementCamera = false;
     private float _speed;
-    private Vector3 _direction => (new Vector3(_player.transform.position.x - transform.position.x, _player.transform.position.y - transform.position.y, _player.transform.position.z - transform.position.z)).normalized;
+    //private Vector3 _direction => (new Vector3(_player.transform.position.x - transform.position.x, _player.transform.position.y - transform.position.y, _player.transform.position.z - transform.position.z)).normalized;
 
     private void OnTriggerExit(Collider other)
     {
@@ -39,8 +39,6 @@ public class CameraWindow : MonoBehaviour
     {
         if(_player != null && transform != null)
         {
-            Move(transform.position);
-
             if(_isInside && _speed > 0)
             {
                 _speed -= _minusSpeed;
@@ -48,6 +46,8 @@ public class CameraWindow : MonoBehaviour
                 if (_speed < 0)
                     _speed = 0;
             }
+
+            Move(transform.position);
         }
     }
 
@@ -90,16 +90,16 @@ public class CameraWindow : MonoBehaviour
 
     //private Vector3 CheckPoint(Vector3 position)
     //{
-    //    if(position.x < _leftPoint.position.x)
+    //    if (position.x < _leftPoint.position.x)
     //        position.x = _leftPoint.position.x;
 
-    //    if(position.x > _rightPoint.position.x)
+    //    if (position.x > _rightPoint.position.x)
     //        position.x = _rightPoint.position.x;
 
-    //    if(position.y > _upPoint.position.y)
+    //    if (position.y > _upPoint.position.y)
     //        position.y = _upPoint.position.y;
 
-    //    if(position.y < _downPoint.position.y)
+    //    if (position.y < _downPoint.position.y)
     //        position.y = _downPoint.position.y;
 
     //    return position;
