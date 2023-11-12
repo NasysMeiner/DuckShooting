@@ -1,6 +1,10 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Prefabs/Gun/RedGun.meta
 guid: bc38ff78dbc26bf4b92fef715323f60f
 folderAsset: yes
+========
+guid: f1b8836e73dad214994172ab9be193c3
+>>>>>>>> new_enemy:Assets/Scenes/LightTest.unity.meta
 DefaultImporter:
   externalObjects: {}
   userData: 
