@@ -7,56 +7,56 @@ using UnityEngine.UI;
 
 public class UIShopCell : MonoBehaviour
 {
-    [SerializeField] private Image _iconGun;
-    [SerializeField] private TMP_Text _name;
-    [SerializeField] private Button _buttonGun;
+    //[SerializeField] private Image _iconGun;
+    //[SerializeField] private TMP_Text _name;
+    //[SerializeField] private Button _buttonGun;
 
-    private Gun _gun = null;
+    //private Gun _gun = null;
 
-    public Gun Gun => _gun;
+    //public Gun Gun => _gun;
 
-    public event UnityAction<Gun> ChangeGun;
+    //public event UnityAction<Gun> ChangeGun;
 
-    private void OnEnable()
-    {
-        if(_gun != null)
-        {
-            _gun.DeactiveGun += DeactiveButton;
-            _gun.ActiveGun += ActiveButton;
-        }
-    }
+    //private void OnEnable()
+    //{
+    //    if(_gun != null)
+    //    {
+    //        _gun.DeactiveGun += DeactiveButton;
+    //        _gun.ActiveGun += ActiveButton;
+    //    }
+    //}
 
-    private void OnDisable()
-    {
-        if (_gun != null)
-        {
-            _gun.DeactiveGun -= DeactiveButton;
-            _gun.ActiveGun -= ActiveButton;
-        }   
-    }
+    //private void OnDisable()
+    //{
+    //    if (_gun != null)
+    //    {
+    //        _gun.DeactiveGun -= DeactiveButton;
+    //        _gun.ActiveGun -= ActiveButton;
+    //    }   
+    //}
 
-    public void Init(Gun gun, FormGun formGun)
-    {
-        _gun = gun;
-        _gun.DeactiveGun += DeactiveButton;
-        _gun.ActiveGun += ActiveButton;
+    //public void Init(Gun gun, FormGun formGun)
+    //{
+    //    _gun = gun;
+    //    _gun.DeactiveGun += DeactiveButton;
+    //    _gun.ActiveGun += ActiveButton;
 
-        _iconGun.sprite = formGun.IconGun;
-        _name.text = formGun.Name;
-    }
+    //    _iconGun.sprite = formGun.IconGun;
+    //    _name.text = formGun.Name;
+    //}
 
-    public void ClickButton()
-    {
-        ChangeGun?.Invoke(_gun);
-    }
+    //public void ClickButton()
+    //{
+    //    ChangeGun?.Invoke(_gun);
+    //}
 
-    private void ActiveButton()
-    {
-        _buttonGun.interactable = false;
-    }
+    //private void ActiveButton()
+    //{
+    //    _buttonGun.interactable = false;
+    //}
 
-    private void DeactiveButton()
-    {
-        _buttonGun.interactable = true;
-    }
+    //private void DeactiveButton()
+    //{
+    //    _buttonGun.interactable = true;
+    //}
 }

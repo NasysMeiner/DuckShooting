@@ -14,12 +14,12 @@ public class SpawnerGuns : MonoBehaviour
         SpawnAllGun();
     }
 
-    public void SpawnAllGun()
+    private void SpawnAllGun()
     {
         foreach(FormGun formGun in _formsGun)
         {
             Gun newGun = Instantiate(formGun.PrefabGun);
-            newGun.Init(formGun.TimeShoot, _shopGun.StockBullet, formGun.EquipmentTime);
+            newGun.Init(formGun.TimeShoot, _shopGun.AmmoBag, formGun.EquipmentTime);
             _shopGun.PlaceInCell(newGun, formGun);
         }
     }

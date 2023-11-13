@@ -1,7 +1,5 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class SlotsGunPlayer : MonoBehaviour
 {
@@ -18,7 +16,7 @@ public class SlotsGunPlayer : MonoBehaviour
     public void ChangeActiveSlot(int index)
     {
         SetActive(index);
-        _shopGun.SetActiveSlot(index);
+        //_shopGun.SetActiveSlot(index);
     }
 
     public void SetActive(int newIndex)

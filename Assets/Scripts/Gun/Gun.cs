@@ -19,9 +19,7 @@ public class Gun : MonoBehaviour, IGun
 
     public Transform PointPosition => _pointPosition;
     public float EquipmentTime => _equipmentTime;
-
-    public event UnityAction ActiveGun;
-    public event UnityAction DeactiveGun;
+    public AmmoBag AmmoBag => _ammoBag;
 
     public void Init(float timeShot, AmmoBag ammoBag, float equipmentTime)
     {
@@ -53,16 +51,6 @@ public class Gun : MonoBehaviour, IGun
     public virtual Bullet SetTypeDamage(Bullet bullet)
     {
         return bullet;
-    }
-
-    public void Activate()
-    {
-        ActiveGun?.Invoke();
-    }
-
-    public void Deactivate()
-    {
-        DeactiveGun?.Invoke();
     }
 
     private void TakeShot()

@@ -36,6 +36,14 @@ public class SlotPlayerGun
         _iconSlot.InactiveSlot();
     }
 
+    public void ChangeGun(Gun gun)
+    {
+        _gun.StopFire();
+        _gun = gun;
+        _bullet = _gun.AmmoBag.StandartBullet;
+        ChangePointPosition();
+    }
+
     public void ChangePointPosition(Transform newPoint = null)
     {
         if(newPoint != null)

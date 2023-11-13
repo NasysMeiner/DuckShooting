@@ -27,7 +27,7 @@ public class ArsenalPlayer : MonoBehaviour
             throw new NotImplementedException("low slots || low icon slots");
 
         for (int i = 0; i < _numberSlots; i++)
-        {
+        {      
             SlotPlayerGun newSlot = _shopGun.SetGunPlayer(iconSlots[i], _slotPosition[i]);
 
             if (newSlot == null)
@@ -42,22 +42,17 @@ public class ArsenalPlayer : MonoBehaviour
             SetCurrentSlotGun(_queueSlot.Dequeue());
     }
 
-    public void SetShopGunSlot(/*int slot, Gun gun, out Gun oldGun*/)
+    public void SetShopGunSlot(int indexSlot, Gun newGun, out Gun oldGun)
     {
-        //oldGun = _slots[slot].SlotGun;
-        //_slots[slot].SetGun(gun);
-        //SetParent(_slots[slot].SlotGun);
-    }
+        if (_slotsPlayer[indexSlot].Gun != null)
+            oldGun = _slotsPlayer[indexSlot].Gun;
+        else
+            oldGun = null;
 
-    public int SearchNullSlots()
-    {
-        //for (int i = 0; i < _slots.Count; i++)
-        //{
-        //    if (_slots[i].SlotGun == null)
-        //        return i;
-        //}
+        _slotsPlayer[indexSlot].ChangeGun(newGun);
 
-        return -1;
+        if (_slotsPlayer[indexSlot] == _currentSlot)
+            StartFire();
     }
 
     public void SetParent(Gun gun)
@@ -107,21 +102,5 @@ public class ArsenalPlayer : MonoBehaviour
     {
         _currentSlot = slotPlayerGun;
         _currentSlot.ActiveSlot();
-    }
-}
-
-[System.Serializable]
-public class Slot
-{
-    [SerializeField] private Transform _positionSlot;
-
-    private Gun _slotGun;
-
-    public Gun SlotGun => _slotGun;
-
-    public void SetGun(Gun gun)
-    {
-        _slotGun = gun;
-        _slotGun.transform.position = _positionSlot.position + (_slotGun.transform.position - _slotGun.PointPosition.position);
     }
 }
