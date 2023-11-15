@@ -10,9 +10,12 @@ public abstract class Enemy : MonoBehaviour
     [SerializeField] protected float _speed = 2;
     [SerializeField] protected bool IsOnActive = false;
 
+    private bool _isInSpawner = false;
+
     protected int _index;
     protected EnemyBag _enemyBag;
 
+    public bool IsInSpawner => _isInSpawner;
 
     private void FixedUpdate()
     {
@@ -65,6 +68,20 @@ public abstract class Enemy : MonoBehaviour
             {
                 _index = 0;
             }
+        }
+    }
+    public void SetInSpawner()
+    {
+        _isInSpawner = true;
+    }
+
+    public void PullOutOfSpawner()
+    {
+        if (_isInSpawner == true)
+        {
+            _enemyBag.AddEnemy(this);
+            _isInSpawner = false;
+            Debug.Log("1");
         }
     }
 }

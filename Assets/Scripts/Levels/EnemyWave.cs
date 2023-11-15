@@ -1,3 +1,4 @@
+using System.Threading.Tasks;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -6,16 +7,18 @@ public class EnemyWave : MonoBehaviour
     [SerializeField] private bool _isOnSpawn = true;
     [SerializeField] private List<Enemys> _enemys;
     [SerializeField] private EnemyBag _enemyBag;
+    [SerializeField] private int _waitAfterEnemy;
 
     private int _millisekundy = 1000;
-    private int _currentWaveIndex;
+    private bool _isStart = true;
+    private int _currentWave = 0;
 
     private void Start()
     {
         if (_isOnSpawn)
-            SpawnEnemy();
+            SpawnAllEnemy();
     }
-    private void SpawnEnemy()
+    private void SpawnAllEnemy()
     {
         foreach (Enemys enemy in _enemys)
         {
@@ -26,6 +29,23 @@ public class EnemyWave : MonoBehaviour
                 newEnemy.transform.SetParent(transform);
                 _enemyBag.AddEnemy(newEnemy);
             }
+        }
+
+        SpawnEnemy();
+    }
+
+    private async void SpawnEnemy()
+    {
+        while (true)
+        {
+            if (_isStart == false)
+            {
+                break;
+            }
+
+            _enemyBag.ActivateEnemy();
+
+            await Task.Delay((int)(_enemys[_currentWave].WaitAfterWave * _millisekundy));
         }
     }
 }
@@ -40,7 +60,6 @@ public class Enemys
     [SerializeField] private float _damage;
     [SerializeField] private Path _path;
     [SerializeField] private float _waitAfterWave;
-
 
     public int Number => _number;
     public Enemy Prefab => _prefab;
