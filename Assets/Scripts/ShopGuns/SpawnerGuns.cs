@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SpawnerGuns : MonoBehaviour
 {
-    [SerializeField] protected List<FormGun> _formsGun;
+    [SerializeField] private List<FormGun> _formsGun;
 
     private ShopGun _shopGun;
 
@@ -19,7 +19,7 @@ public class SpawnerGuns : MonoBehaviour
         foreach(FormGun formGun in _formsGun)
         {
             Gun newGun = Instantiate(formGun.PrefabGun);
-            newGun.Init(formGun.TimeShoot, _shopGun.AmmoBag, formGun.EquipmentTime);
+            newGun.Init(formGun.TimeShoot, _shopGun.AmmoBag, formGun.EquipmentTime, formGun.StoreSize, formGun.RechargeTime);
             _shopGun.PlaceInCell(newGun, formGun);
         }
     }
@@ -32,11 +32,15 @@ public class FormGun
     [SerializeField] private string _name;
     [SerializeField] private Gun _prefabGun;
     [SerializeField] private float _timeShoot;
+    [SerializeField] private int _storeSize;
     [SerializeField] private float _equipmentTime;
+    [SerializeField] private float _rechargeTime;
 
     public Gun PrefabGun => _prefabGun;
     public float TimeShoot => _timeShoot;
     public string Name => _name;
     public Sprite IconGun => _iconGun;
     public float EquipmentTime => _equipmentTime;
+    public int StoreSize => _storeSize;
+    public float RechargeTime => _rechargeTime;
 }

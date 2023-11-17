@@ -4076,7 +4076,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 82, y: -122}
+  m_AnchoredPosition: {x: 82, y: -120}
   m_SizeDelta: {x: 158.7661, y: 537.9043}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &380962872
@@ -9219,7 +9219,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0.47447914}
-  m_AnchoredPosition: {x: -0.65856934, y: -12.5}
+  m_AnchoredPosition: {x: -0.65856934, y: -12}
   m_SizeDelta: {x: 53.9458, y: 77.3979}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &945247549
@@ -9511,13 +9511,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d10d49e254c61646bf6368196bd9239, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _isOnSpawn: 1
   _bullets:
-  - _number: 2
-    _prefab: {fileID: 1145825508973117007, guid: 074adbf38fb72ae4e886a829b679f5d8, type: 3}
+  - _prefab: {fileID: 1145825508973117007, guid: 074adbf38fb72ae4e886a829b679f5d8, type: 3}
+    _number: 10
     _speed: 8
     _damage: 1
-  _ammoBag: {fileID: 994834138}
 --- !u!4 &994834137
 Transform:
   m_ObjectHideFlags: 0
@@ -9545,7 +9543,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4402838fe8920b409d753c5d528948c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _standartBullet: {fileID: 1145825508973117007, guid: 074adbf38fb72ae4e886a829b679f5d8, type: 3}
 --- !u!1 &996275408
 GameObject:
   m_ObjectHideFlags: 0
@@ -13344,6 +13341,8 @@ MonoBehaviour:
   _arsenalPlayer: {fileID: 1413727147}
   _shopGun: {fileID: 176184200}
   _spawnerGuns: {fileID: 1400129115}
+  _spawnerBullet: {fileID: 994834136}
+  _ammoBag: {fileID: 994834138}
 --- !u!114 &1400129113
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13393,17 +13392,23 @@ MonoBehaviour:
     _name: Gun_1
     _prefabGun: {fileID: 8380608326699779988, guid: 27bad44c6abecb04686ef7b6e6b785b6, type: 3}
     _timeShoot: 1
+    _storeSize: 2
     _equipmentTime: 1
+    _rechargeTime: 2
   - _iconGun: {fileID: 21300000, guid: fccecdfb5696147e4a2c31c626b3278c, type: 3}
     _name: Gun_2
     _prefabGun: {fileID: 3959080282289623011, guid: 2cd63ae13201ec548b48e68a93369ab9, type: 3}
     _timeShoot: 0.5
+    _storeSize: 6
     _equipmentTime: 1
+    _rechargeTime: 2
   - _iconGun: {fileID: 21300000, guid: 88214a3a666014e50aa619bf5a0c5aee, type: 3}
     _name: Gun_3
     _prefabGun: {fileID: 8380608326699779988, guid: 27bad44c6abecb04686ef7b6e6b785b6, type: 3}
     _timeShoot: 0.2
+    _storeSize: 2
     _equipmentTime: 1
+    _rechargeTime: 2
 --- !u!114 &1400129116
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19387,7 +19392,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 416857369}
   m_Direction: 2
   m_Value: 0.0000003405715
-  m_Size: 0
+  m_Size: 0.83480453
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:

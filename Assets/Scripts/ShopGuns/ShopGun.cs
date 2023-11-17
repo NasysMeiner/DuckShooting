@@ -48,7 +48,7 @@ public class ShopGun : MonoBehaviour
         {
             if(cellShop.IsEquip == false)
             {
-                var newSlot = new SlotPlayerGun(cellShop.Gun, _ammoBag.StandartBullet, iconSlot, point);
+                var newSlot = new SlotPlayerGun(cellShop.Gun, TypeBullet.Standart, iconSlot, point);
                 cellShop.EquipGun();
                 return newSlot;
             }

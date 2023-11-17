@@ -6,6 +6,8 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody))]
 public abstract class Bullet : MonoBehaviour, IBullet
 {
+    [SerializeField] protected TypeBullet _typeBullet = TypeBullet.Standart;
+
     private bool _isInCannon = false;
 
     protected float _standartDamage = 1f;
@@ -16,6 +18,7 @@ public abstract class Bullet : MonoBehaviour, IBullet
     protected AmmoBag _ammoBag;
 
     public bool IsInCannon => _isInCannon;
+    public TypeBullet TypeBullet => _typeBullet;
 
     public virtual void MakeDamage(int damage)
     {

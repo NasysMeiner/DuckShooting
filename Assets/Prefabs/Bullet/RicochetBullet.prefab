@@ -150,7 +150,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da7d2a2c17972f84fa876ce13f7960b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _trail: {fileID: 1929778354768218542}
+  _typeBullet: 1
   _numberMaxRicochets: 3
   _millisecondsWait: 1000
 --- !u!1 &5364871453726833913

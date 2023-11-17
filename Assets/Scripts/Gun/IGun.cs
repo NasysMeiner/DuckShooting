@@ -4,7 +4,7 @@ using UnityEngine;
 
 public interface IGun
 {
-    Bullet SearchBullet();
+    Queue<Bullet> SearchNewClip();
     Bullet SetTypeDamage(Bullet bullet);
     void StartFire();
     void StopFire();

@@ -5,7 +5,7 @@ using UnityEngine;
 public class SlotPlayerGun
 {
     private Gun _gun;
-    private Bullet _bullet;
+    private TypeBullet _typeBullet;
     private IconSlot _iconSlot;
     private Transform _transformPoint;
     private bool _isActiveSlot = false;
@@ -14,13 +14,14 @@ public class SlotPlayerGun
     public bool IsActiveSlot => _isActiveSlot;
     public Transform TransformPoint => _transformPoint;
 
-    public SlotPlayerGun(Gun gun, Bullet bullet, IconSlot iconSlot, Transform transformPoint)
+    public SlotPlayerGun(Gun gun, TypeBullet typeBullet, IconSlot iconSlot, Transform transformPoint)
     {
         _gun = gun;
-        _bullet = bullet;
+        _typeBullet = typeBullet;
         _iconSlot = iconSlot;
         _transformPoint = transformPoint;
 
+        ChangeTypeBullet(_typeBullet);
         UpdatePosition();
     }
 
@@ -40,7 +41,7 @@ public class SlotPlayerGun
     {
         _gun.StopFire();
         _gun = gun;
-        _bullet = _gun.AmmoBag.StandartBullet;
+        _typeBullet = TypeBullet.Standart;
         ChangePointPosition();
     }
 
@@ -50,6 +51,12 @@ public class SlotPlayerGun
             _transformPoint = newPoint;
 
         UpdatePosition();
+    }
+
+    public void ChangeTypeBullet(TypeBullet typeBullet)
+    {
+        _typeBullet = typeBullet;
+        _gun.ChangeTypeBullet(_typeBullet);
     }
 
     private void UpdatePosition()
