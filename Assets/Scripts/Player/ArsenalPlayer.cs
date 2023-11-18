@@ -50,6 +50,7 @@ public class ArsenalPlayer : MonoBehaviour
             oldGun = null;
 
         _slotsPlayer[indexSlot].ChangeGun(newGun);
+        newGun.transform.SetParent(transform);
 
         if (_slotsPlayer[indexSlot] == _currentSlot)
             StartFire();
