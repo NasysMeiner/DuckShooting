@@ -8,12 +8,16 @@ public class SlotGun : ButtonAnimation
     public override void Press()
     {
         base.Press();
-        _arrowIcon.enabled = true;
+
+        if (_arrowIcon != null)
+            _arrowIcon.enabled = true;
     }
 
     public override void Off()
     {
         base.Off();
-        _arrowIcon.enabled = false;
+
+        if (_arrowIcon != null)
+            _arrowIcon.enabled = false;
     }
 }

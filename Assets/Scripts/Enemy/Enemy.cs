@@ -17,7 +17,6 @@ public abstract class Enemy : MonoBehaviour
 
     public bool IsInSpawner => _isInSpawner;
 
-    private void FixedUpdate()
     private void Update()
     {
         Movement();
