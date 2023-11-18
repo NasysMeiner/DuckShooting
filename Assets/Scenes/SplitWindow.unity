@@ -12348,14 +12348,14 @@ MonoBehaviour:
     _prefabGun: {fileID: 8380608326699779988, guid: 27bad44c6abecb04686ef7b6e6b785b6, type: 3}
     _timeShoot: 1
     _storeSize: 2
-    _equipmentTime: 2
+    _equipmentTime: 1
     _rechargeTime: 2
   - _iconGun: {fileID: 21300000, guid: fccecdfb5696147e4a2c31c626b3278c, type: 3}
     _name: Gun_2
     _prefabGun: {fileID: 3959080282289623011, guid: 2cd63ae13201ec548b48e68a93369ab9, type: 3}
     _timeShoot: 0.5
     _storeSize: 6
-    _equipmentTime: 1.5
+    _equipmentTime: 1
     _rechargeTime: 2
   - _iconGun: {fileID: 21300000, guid: 88214a3a666014e50aa619bf5a0c5aee, type: 3}
     _name: Gun_3
