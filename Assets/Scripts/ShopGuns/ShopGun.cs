@@ -1,7 +1,5 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.Rendering.LookDev;
 using UnityEngine;
 
 public class ShopGun : MonoBehaviour
@@ -23,7 +21,7 @@ public class ShopGun : MonoBehaviour
 
     private void OnDisable()
     {
-        foreach(ShopCellGun cellGun in _cellGuns)
+        foreach (ShopCellGun cellGun in _cellGuns)
         {
             cellGun.ChangeGun -= ChangeGunPlayer;
         }
@@ -32,29 +30,6 @@ public class ShopGun : MonoBehaviour
     public void InitShopGun()
     {
         ChangeActiveSlot();
-    }
-
-    public void PlaceInCell(Gun gun, FormGun formGun)
-    {
-        ShopCellGun cellGun = Instantiate(_prefabUIShopCell, _transformUIShop);
-        cellGun.Init(gun, formGun, false);
-        _cellGuns.Add(cellGun);
-        cellGun.ChangeGun += ChangeGunPlayer;
-    }
-
-    public SlotPlayerGun SetGunPlayer(IconSlot iconSlot, Transform point)
-    {
-        foreach(ShopCellGun cellShop in _cellGuns)
-        {
-            if(cellShop.IsEquip == false)
-            {
-                var newSlot = new SlotPlayerGun(cellShop.Gun, TypeBullet.Standart, iconSlot, point);
-                cellShop.EquipGun();
-                return newSlot;
-            }
-        }
-
-        return null;
     }
 
     public void ChangeActiveSlot(int newIndex = 0)
@@ -69,15 +44,38 @@ public class ShopGun : MonoBehaviour
         _currentSlotIndex = newIndex;
     }
 
+    public void PlaceInCell(Gun gun, FormGun formGun)
+    {
+        ShopCellGun cellGun = Instantiate(_prefabUIShopCell, _transformUIShop);
+        cellGun.Init(gun, formGun, false);
+        _cellGuns.Add(cellGun);
+        cellGun.ChangeGun += ChangeGunPlayer;
+    }
+
+    public SlotPlayerGun SetGunPlayer(IconSlot iconSlot, Transform point)
+    {
+        foreach (ShopCellGun cellShop in _cellGuns)
+        {
+            if (cellShop.IsEquip == false)
+            {
+                var newSlot = new SlotPlayerGun(cellShop.Gun, TypeBullet.Standart, iconSlot, point);
+                cellShop.EquipGun();
+                return newSlot;
+            }
+        }
+
+        return null;
+    }
+
     private void ChangeGunPlayer(Gun gun)
     {
         _arsenalPlayer.SetShopGunSlot(_currentSlotIndex, gun, out Gun oldGun);
 
-        if(oldGun != null)
+        if (oldGun != null)
         {
-            foreach(ShopCellGun shopCellGun in _cellGuns)
+            foreach (ShopCellGun shopCellGun in _cellGuns)
             {
-                if(shopCellGun.Gun == oldGun)
+                if (shopCellGun.Gun == oldGun)
                 {
                     shopCellGun.UnequipGun();
                     ReturnGunInShop(shopCellGun);

@@ -1,26 +1,19 @@
-using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class SlotGun : MonoBehaviour
+public class SlotGun : ButtonAnimation
 {
-    [SerializeField] private Button _button;
-    [SerializeField] private Image _pressedButton;
-    [SerializeField] private TMP_Text _textButton;
-    [SerializeField] private Color _enable;
-    [SerializeField] private Color _disable;
+    [SerializeField] private Image _arrowIcon;
 
-    public void Press()
+    public override void Press()
     {
-        _button.interactable = false;
-        _pressedButton.enabled = true;
-        _textButton.color = _enable;
+        base.Press();
+        _arrowIcon.enabled = true;
     }
 
-    public void Off()
+    public override void Off()
     {
-        _button.interactable = true;
-        _pressedButton.enabled = false;
-        _textButton.color = _disable;
+        base.Off();
+        _arrowIcon.enabled = false;
     }
 }
