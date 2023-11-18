@@ -4461,7 +4461,7 @@ MonoBehaviour:
   _textButton: {fileID: 2052064918}
   _enable: {r: 0.30588236, g: 0.8000001, b: 0, a: 1}
   _disable: {r: 0, g: 0, b: 0, a: 1}
-  _arrowIcon: {fileID: 0}
+  _arrowIcon: {fileID: 777174694}
 --- !u!1001 &445454962
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -15876,7 +15876,7 @@ MonoBehaviour:
   _textButton: {fileID: 2001425909}
   _enable: {r: 0.30588236, g: 0.8000001, b: 0, a: 1}
   _disable: {r: 0, g: 0, b: 0, a: 1}
-  _arrowIcon: {fileID: 0}
+  _arrowIcon: {fileID: 1987440280}
 --- !u!1001 &1832927779
 PrefabInstance:
   m_ObjectHideFlags: 0
