@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.2817234, g: 0.254946, b: 0.2662048, a: 1}
+  m_IndirectSpecularColor: {r: 0.280981, g: 0.25430548, b: 0.26527718, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1238,7 +1238,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18c4d46f7e5a24640b552c0b3149ffe4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _stockBullet: {fileID: 994834138}
+  _ammoBag: {fileID: 0}
   _arsenalPlayer: {fileID: 1413727147}
   _prefabUIShopCell: {fileID: 2475231066087617384, guid: ab6750888fb3161469a1607c52d85c3b, type: 3}
   _transformUIShop: {fileID: 315242049}
@@ -3311,7 +3311,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 492810249}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 20.9, y: -1.0088606, z: 19.170336}
+  m_LocalPosition: {x: 1.61, y: -1.0088606, z: 20.37}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -6227,7 +6227,7 @@ MonoBehaviour:
     _prefab: {fileID: 1145825508973117007, guid: 074adbf38fb72ae4e886a829b679f5d8, type: 3}
     _speed: 5
     _damage: 1
-  _ammoBag: {fileID: 0}
+  _ammoBag: {fileID: 994834138}
 --- !u!4 &994834137
 Transform:
   m_ObjectHideFlags: 0
@@ -6255,7 +6255,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4402838fe8920b409d753c5d528948c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _boxTrigger: {fileID: 0}
+  _standartBullet: {fileID: 1145825508973117007, guid: 074adbf38fb72ae4e886a829b679f5d8, type: 3}
 --- !u!1 &1025305886
 GameObject:
   m_ObjectHideFlags: 0
@@ -7081,6 +7081,37 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1145697829}
   m_CullTransparentMesh: 1
+--- !u!1 &1147585040
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1147585041}
+  m_Layer: 6
+  m_Name: Point
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1147585041
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1147585040}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.89, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1413727143}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1154526479 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 60d595510b309ed4ba43a4dd8c75008d, type: 3}
@@ -8702,8 +8733,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 39a6d5789c5ad0e4db3a3878b8dfa300, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _arsenalPlayer: {fileID: 1413727147}
   _shopGun: {fileID: 176184200}
   _spawnerGuns: {fileID: 1400129115}
+  _iconSlots: []
 --- !u!114 &1400129113
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8751,14 +8784,17 @@ MonoBehaviour:
     _name: Gun_1
     _prefabGun: {fileID: 5700315768781495344, guid: 52898dff5f4070c4fa56ce95de532686, type: 3}
     _timeShoot: 1
+    _equipmentTime: 0.5
   - _iconGun: {fileID: 21300000, guid: fccecdfb5696147e4a2c31c626b3278c, type: 3}
     _name: Gun_2
     _prefabGun: {fileID: 8402359601827866552, guid: a2010ad2319558948a1d833cf732e7d8, type: 3}
     _timeShoot: 0.5
+    _equipmentTime: 0.5
   - _iconGun: {fileID: 21300000, guid: 88214a3a666014e50aa619bf5a0c5aee, type: 3}
     _name: Gun_2
     _prefabGun: {fileID: 8402359601827866552, guid: a2010ad2319558948a1d833cf732e7d8, type: 3}
     _timeShoot: 1.5
+    _equipmentTime: 0
 --- !u!4 &1411691904 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: f7bef7a6a05f56741b8ba36ee32db2ef, type: 3}
@@ -8928,6 +8964,7 @@ Transform:
   - {fileID: 1727970821}
   - {fileID: 26223957}
   - {fileID: 2145564042}
+  - {fileID: 1147585041}
   m_Father: {fileID: 0}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -8973,7 +9010,7 @@ Rigidbody:
   m_ImplicitTensor: 1
   m_UseGravity: 1
   m_IsKinematic: 0
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_Constraints: 120
   m_CollisionDetection: 3
 --- !u!136 &1413727146
@@ -9011,9 +9048,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cf5928f302f653488c7750523aeadf5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _slots:
-  - _positionSlot: {fileID: 1727970821}
-  - _positionSlot: {fileID: 26223957}
+  _numberSlots: 2
+  _slotPosition: []
+  _shopGun: {fileID: 0}
   _changeGunButton: {fileID: 1637479354}
   _buttonRollbackTime: 0.5
 --- !u!1 &1429781209
@@ -12219,12 +12256,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45d3a882d18f61c458d163a1495685e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _startSpeed: 0.05
-  _minusSpeed: 0.001
-  _leftPoint: {fileID: 542548829}
-  _rightPoint: {fileID: 1573238564}
-  _upPoint: {fileID: 545296247}
-  _downPoint: {fileID: 1795436604}
+  _startSpeed: 1.5
+  _minusSpeed: 0.005
+  _pointPlayer: {fileID: 1147585041}
 --- !u!65 &1909367104
 BoxCollider:
   m_ObjectHideFlags: 0

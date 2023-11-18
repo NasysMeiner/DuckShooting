@@ -14,15 +14,15 @@ public class ShopTest : MonoBehaviour
     private Product _currentProduct;
     private Price _currentPrice;
 
-    private void OnDestroy()
-    {
-        foreach (var product in _products)
-        {
-            product.Clicked -= OnProductClicked;
-        }
+    //private void OnDestroy()
+    //{
+    //    foreach (var product in _products)
+    //    {
+    //        product.Clicked -= OnProductClicked;
+    //    }
 
-        _messageBoxBuy.IsConfirmAction -= ProcessingReceivedFromMessageBox;
-    }
+    //    _messageBoxBuy.IsConfirmAction -= ProcessingReceivedFromMessageBox;
+    //}
 
     public void Init()
     {

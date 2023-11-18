@@ -30,9 +30,9 @@ public class Movement : MonoBehaviour
         get
         {
             var horizontal = Input.GetAxis("Horizontal");
-            var vertical = Input.GetAxis("Vertical");
+            //var vertical = Input.GetAxis("Vertical");
 
-            return new Vector3(horizontal, 0.0f, vertical);
+            return new Vector3(horizontal, 0.0f, 0.0f);
         }
     }
 
@@ -56,10 +56,8 @@ public class Movement : MonoBehaviour
         }
         else
         {
-            if (Math.Abs(_rigidbody.velocity.x) >= _maxSpeed)
-                _rigidbody.velocity = new Vector3(_maxSpeed * _rigidbody.velocity.normalized.x, _rigidbody.velocity.y, _rigidbody.velocity.z);
-
             _rigidbody.AddForce(_movementVector * _speed, ForceMode.Impulse);
+            _rigidbody.velocity = new Vector3(Math.Clamp(_rigidbody.velocity.x, -_maxSpeed, _maxSpeed), _rigidbody.velocity.y, 0);
         }
            
     }

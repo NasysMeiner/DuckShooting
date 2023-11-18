@@ -10,7 +10,7 @@ public class Border : MonoBehaviour
     {
         if(collider.gameObject.TryGetComponent(out Bullet bullet))
         {
-            _bulletStock.AddBullet(bullet);
+            bullet.PullOutOfGun();
         }
     }
 }

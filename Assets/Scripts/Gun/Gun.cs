@@ -1,4 +1,8 @@
+using System;
+using System.Collections.Generic;
+using System.Threading;
 using System.Threading.Tasks;
+using Unity.VisualScripting.Antlr3.Runtime;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -7,24 +11,33 @@ public class Gun : MonoBehaviour, IGun
     [SerializeField] private ShotPoint _shotPoint;
     [SerializeField] private Transform _pointPosition;
 
+    private TypeBullet _typeBullet;
     private float _timeShot = 1;
     private float _damage = 1;
     private int _storeSize = 10;
+    private float _equipmentTime;
+    private float _rechargeTime;
 
     private AmmoBag _ammoBag;
 
     private bool _isStart = false;
+    private Queue<Bullet> _currentClip = null;
     private int _millisekundy = 1000;
 
-    public Transform PointPosition => _pointPosition;
+    public float EquipmentTime => _equipmentTime;
 
-    public event UnityAction ActiveGun;
-    public event UnityAction DeactiveGun;
+    private void OnApplicationQuit()
+    {
+        _isStart = false;
+    }
 
-    public void Init(float timeShot, AmmoBag ammoBag)
+    public void Init(float timeShot, AmmoBag ammoBag, float equipmentTime, int storeSize, float rechargeTime)
     {
         _timeShot = timeShot;
         _ammoBag = ammoBag;
+        _storeSize = storeSize;
+        _equipmentTime = equipmentTime;
+        _rechargeTime = rechargeTime;
     }
 
     public void StartFire()
@@ -39,12 +52,20 @@ public class Gun : MonoBehaviour, IGun
     public void StopFire()
     {
         if (_isStart == true)
+        {
             _isStart = false;
+
+            while (_currentClip.Count > 0)
+            {
+                Bullet bullet = _currentClip.Dequeue();
+                bullet.PullOutOfGun();
+            }
+        }
     }
 
-    public Bullet SearchBullet()
+    public Queue<Bullet> SearchNewClip()
     {
-        return _ammoBag.SearchFreeBullet();
+        return _ammoBag.ReloadClip(_typeBullet, _storeSize);
     }
 
     public virtual Bullet SetTypeDamage(Bullet bullet)
@@ -52,26 +73,27 @@ public class Gun : MonoBehaviour, IGun
         return bullet;
     }
 
-    public void Activate()
+    public void ChangeTypeBullet(TypeBullet typeBullet)
     {
-        ActiveGun?.Invoke();
-    }
-
-    public void Deactivate()
-    {
-        DeactiveGun?.Invoke();
+        _typeBullet = typeBullet;
     }
 
     private void TakeShot()
     {
-        Bullet bullet = SearchBullet();
+        if (_currentClip == null || _currentClip.Count <= 0)
+            _currentClip = SearchNewClip();
 
-        if (bullet != null)
+        if (_currentClip.Count > 0)
         {
-            bullet.SetInGun();
-            bullet = SetTypeDamage(bullet);
-            bullet.transform.position = _shotPoint.transform.position;
-            bullet.SetVelocity();
+            Bullet bullet = _currentClip.Dequeue();
+
+            if (bullet != null)
+            {
+                bullet.SetInGun();
+                bullet = SetTypeDamage(bullet);
+                bullet.transform.position = _shotPoint.transform.position;
+                bullet.SetVelocity();
+            }           
         }
     }
 
@@ -80,13 +102,14 @@ public class Gun : MonoBehaviour, IGun
         while (true)
         {
             if (_isStart == false)
-            {
                 break;
-            }
 
             TakeShot();
 
-            await Task.Delay((int)(_timeShot * _millisekundy));
+            if (_currentClip.Count <= 0)
+                await Task.Delay((int)(_rechargeTime * _millisekundy));
+            else
+                await Task.Delay((int)(_timeShot * _millisekundy));
         }
     }
 }

@@ -1,77 +1,94 @@
-using System.Collections;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class ShopGun : MonoBehaviour
 {
-    [SerializeField] private AmmoBag _stockBullet;
+    [Header("Init Components")]
+    [SerializeField] private AmmoBag _ammoBag;
     [SerializeField] private ArsenalPlayer _arsenalPlayer;
-    [SerializeField] private UIShopCell _prefabUIShopCell;
+    [SerializeField] private ShopCellGun _prefabUIShopCell;
+
+    [Header("UI gun slot: transform, icons")]
+    [SerializeField] private List<SlotGun> _slots;
     [SerializeField] private Transform _transformUIShop;
 
-    private List<CellGun> _guns = new List<CellGun>();
-    private List<UIShopCell> _cellsShop = new List<UIShopCell>();
-    private int _currentSlotChange = 0;
+    private List<ShopCellGun> _cellGuns = new List<ShopCellGun>();
 
-    public AmmoBag StockBullet => _stockBullet;
+    private int _currentSlotIndex = 0;
+
+    public AmmoBag AmmoBag => _ammoBag;
 
     private void OnDisable()
     {
-        foreach (UIShopCell cellShop in _cellsShop)
+        foreach (ShopCellGun cellGun in _cellGuns)
         {
-            cellShop.ChangeGun -= OnChangeGun;
+            cellGun.ChangeGun -= ChangeGunPlayer;
         }
+    }
+
+    public void InitShopGun()
+    {
+        ChangeActiveSlot();
+    }
+
+    public void ChangeActiveSlot(int newIndex = 0)
+    {
+        if (_slots == null)
+            throw new NotImplementedException("null slot icon gun");
+
+        if (newIndex != _currentSlotIndex)
+            _slots[_currentSlotIndex].Off();
+
+        _slots[newIndex].Press();
+        _currentSlotIndex = newIndex;
     }
 
     public void PlaceInCell(Gun gun, FormGun formGun)
     {
-        UIShopCell cellShop = Instantiate(_prefabUIShopCell, _transformUIShop);
-        cellShop.Init(gun, formGun);
-        cellShop.ChangeGun += OnChangeGun;
-        _cellsShop.Add(cellShop);
-
-        SetGunPlayer(gun);
+        ShopCellGun cellGun = Instantiate(_prefabUIShopCell, _transformUIShop);
+        cellGun.Init(gun, formGun, false);
+        _cellGuns.Add(cellGun);
+        cellGun.ChangeGun += ChangeGunPlayer;
     }
 
-    public void SetActiveSlot(int index)
+    public SlotPlayerGun SetGunPlayer(IconSlot iconSlot, Transform point)
     {
-        _currentSlotChange = index;
-    }
-
-    public void SetGunPlayer(Gun gun)
-    {
-        int index = _arsenalPlayer.SearchNullSlots();
-
-        if (index < 0)
-            return;
-
-        gun.Activate();
-        _arsenalPlayer.SetGunSlot(index, gun, out Gun oldGun);
-
-        if(oldGun != null)
-            ReturnGun(oldGun);
-    }
-
-    private void ReturnGun(Gun gun)
-    {
-        foreach(UIShopCell cellShop in _cellsShop)
+        foreach (ShopCellGun cellShop in _cellGuns)
         {
-            if(cellShop.Gun == gun)
+            if (cellShop.IsEquip == false)
             {
-                cellShop.Gun.Deactivate();
-                cellShop.Gun.StopFire();
-                cellShop.Gun.transform.position = transform.position;
-                cellShop.Gun.transform.SetParent(transform);
+                var newSlot = new SlotPlayerGun(cellShop.Gun, TypeBullet.Standart, iconSlot, point);
+                cellShop.EquipGun();
+                return newSlot;
+            }
+        }
+
+        return null;
+    }
+
+    private void ChangeGunPlayer(Gun gun)
+    {
+        _arsenalPlayer.SetShopGunSlot(_currentSlotIndex, gun, out Gun oldGun);
+
+        if (oldGun != null)
+        {
+            foreach (ShopCellGun shopCellGun in _cellGuns)
+            {
+                if (shopCellGun.Gun == oldGun)
+                {
+                    shopCellGun.UnequipGun();
+                    ReturnGunInShop(shopCellGun);
+
+                    break;
+                }
             }
         }
     }
 
-    private void OnChangeGun(Gun gun)
+    private void ReturnGunInShop(ShopCellGun shopCellGun)
     {
-        _arsenalPlayer.SetGunSlot(_currentSlotChange, gun, out Gun oldGun);
-        gun.Activate();
-
-        if (oldGun != null)
-            ReturnGun(oldGun);
+        shopCellGun.Gun.transform.SetParent(transform);
+        shopCellGun.Gun.transform.position = transform.position;
     }
 }

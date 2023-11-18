@@ -6,7 +6,7 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody))]
 public abstract class Bullet : MonoBehaviour, IBullet
 {
-    [SerializeField] private TrailRenderer _trail;
+    [SerializeField] protected TypeBullet _typeBullet = TypeBullet.Standart;
 
     private bool _isInCannon = false;
 
@@ -18,6 +18,7 @@ public abstract class Bullet : MonoBehaviour, IBullet
     protected AmmoBag _ammoBag;
 
     public bool IsInCannon => _isInCannon;
+    public TypeBullet TypeBullet => _typeBullet;
 
     public virtual void MakeDamage(int damage)
     {
@@ -41,33 +42,16 @@ public abstract class Bullet : MonoBehaviour, IBullet
     public void SetInGun()
     {
         _isInCannon = true;
-
-    }
-
-    private async void ResetTrailRenderer(TrailRenderer tr)
-    {
-        Debug.Log("2");
-
-        await Task.Delay(100);
-        Debug.Log("3");
-        _ammoBag.AddBullet(this);
-
-
-        tr.time = 0.1f;
     }
 
     public void PullOutOfGun()
     {
-        if(_isInCannon == true)
+        if(_isInCannon)
         {
-            _trail.time = 0;
             _ammoBag.AddBullet(this);
             _damage = _standartDamage;
             _rigidbody.velocity = Vector3.zero;
             _isInCannon = false;
-            Debug.Log("1");
-            ResetTrailRenderer(_trail);
-            
         }
     }
 }

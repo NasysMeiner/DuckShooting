@@ -5,14 +5,15 @@ using UnityEngine;
 
 public class SpawnerBullet : MonoBehaviour
 {
-    [SerializeField] private bool _isOnSpawn = true;
+    [Header("TypeBullet")]
     [SerializeField] private List<Form> _bullets;
-    [SerializeField] private AmmoBag _ammoBag;
 
-    private void Start()
+    private AmmoBag _ammoBag;
+
+    public void InitSpawnBullet(AmmoBag ammoBag)
     {
-        if (_isOnSpawn)
-            SpawnBullet();
+        _ammoBag = ammoBag;
+        SpawnBullet();
     }
 
     private void SpawnBullet()
@@ -33,13 +34,13 @@ public class SpawnerBullet : MonoBehaviour
 [System.Serializable]
 public class Form
 {
-    [SerializeField] private int _number;
     [SerializeField] private Bullet _prefab;
+    [SerializeField] private int _number;
     [SerializeField] private float _speed;
     [SerializeField] private float _damage;
 
-    public int Number => _number;
     public Bullet Prefab => _prefab;
+    public int Number => _number;
     public float Speed => _speed;
     public float Damage => _damage;
 }

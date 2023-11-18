@@ -870,8 +870,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 4115127146065024298}
-        m_TargetAssemblyTypeName: UIShopCell, Assembly-CSharp
+      - m_Target: {fileID: 2853643448879441834}
+        m_TargetAssemblyTypeName: ShopCellGun, Assembly-CSharp
         m_MethodName: ClickButton
         m_Mode: 1
         m_Arguments:
@@ -1120,7 +1120,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4252990780236639638}
-  - component: {fileID: 4115127146065024298}
+  - component: {fileID: 2853643448879441834}
   m_Layer: 5
   m_Name: SlotUIShop
   m_TagString: Untagged
@@ -1152,7 +1152,7 @@ RectTransform:
   m_AnchoredPosition: {x: -1142.7756, y: 337.58508}
   m_SizeDelta: {x: 409.4566, y: 312.5062}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &4115127146065024298
+--- !u!114 &2853643448879441834
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1161,7 +1161,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 8181044074570428305}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5c202c16868da964babc750e2ce0fd6a, type: 3}
+  m_Script: {fileID: 11500000, guid: b841e6563097af54fb150ebf248d3729, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _iconGun: {fileID: 1369396185718991895}

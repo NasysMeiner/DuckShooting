@@ -148,9 +148,9 @@ Rigidbody:
   m_ImplicitTensor: 1
   m_UseGravity: 1
   m_IsKinematic: 0
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_Constraints: 90
-  m_CollisionDetection: 0
+  m_CollisionDetection: 2
 --- !u!136 &2126801034980010520
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -191,6 +191,7 @@ MonoBehaviour:
   _healthBar: {fileID: 1550264682739804230}
   _path: {fileID: 11400000, guid: ae13425e4b8c99941bbf2e35e8b05b67, type: 2}
   _speed: 2
+  _rigidbody: {fileID: -793815207821717483}
 --- !u!1 &4279003639649419089
 GameObject:
   m_ObjectHideFlags: 0
