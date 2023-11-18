@@ -18,7 +18,7 @@ public class SpawnerGuns : MonoBehaviour
     {
         foreach(FormGun formGun in _formsGun)
         {
-            Gun newGun = Instantiate(formGun.PrefabGun);
+            Gun newGun = Instantiate(formGun.PrefabGun, transform);
             newGun.Init(formGun.TimeShoot, _shopGun.AmmoBag, formGun.EquipmentTime, formGun.StoreSize, formGun.RechargeTime);
             _shopGun.PlaceInCell(newGun, formGun);
         }
