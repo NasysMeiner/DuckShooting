@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.04100457, g: 0.07439519, b: 0.12579662, a: 1}
+  m_IndirectSpecularColor: {r: 0.0412504, g: 0.07305349, b: 0.12561938, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -3944,7 +3944,7 @@ GameObject:
   - component: {fileID: 393356047}
   - component: {fileID: 393356046}
   m_Layer: 0
-  m_Name: Path
+  m_Name: RawPath
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4971,7 +4971,7 @@ GameObject:
   - component: {fileID: 476234449}
   - component: {fileID: 476234448}
   m_Layer: 0
-  m_Name: Path
+  m_Name: FlyingPath
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12230,7 +12230,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 89.606964}
+  m_AnchoredPosition: {x: 0, y: 89.41647}
   m_SizeDelta: {x: 0, y: 542.43}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1395189717
@@ -12517,6 +12517,7 @@ Transform:
   - {fileID: 2145564042}
   - {fileID: 506306438}
   - {fileID: 1372992973}
+  - {fileID: 2040412955}
   m_Father: {fileID: 0}
   m_RootOrder: 19
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -14639,22 +14640,43 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _isOnSpawn: 1
   _enemys:
+  - _number: 1
+    _prefab: {fileID: 5153080910974909542, guid: 23b0f9c8a313fd04d9b5b120738cee73, type: 3}
+    _speed: 3
+    _healthPoint: 100
+    _damage: 2
+    _path:
+    - {x: -2.259, y: 0.492705, z: 1.11}
+    - {x: 2.173, y: 0.492705, z: 1.11}
+    _waitAfterWave: 3
+  - _number: 1
+    _prefab: {fileID: -715642404077166471, guid: 6b04e053888d72a4490c581c71a936c4, type: 3}
+    _speed: 2
+    _healthPoint: 100
+    _damage: 2
+    _path:
+    - {x: -2.259, y: 2, z: 1.11}
+    - {x: 2.173, y: 2, z: 1.11}
+    _waitAfterWave: 3
   - _number: 2
     _prefab: {fileID: 1644277461539831796, guid: 1b352d79ab9e2b7468a6ba1577afeb2e, type: 3}
     _speed: 3
     _healthPoint: 100
     _damage: 2
-    _path: {fileID: 11400000, guid: 79659c22d218f4c428d59ad333c9d067, type: 2}
-    _waitAfterWave: 5
+    _path:
+    - {x: -2.259, y: 0.492705, z: 1.11}
+    - {x: 2.173, y: 0.492705, z: 1.11}
+    _waitAfterWave: 3
   - _number: 1
-    _prefab: {fileID: -870464576970142836, guid: bfdd6cd52c93e1f448eeba0afcdbfa51, type: 3}
-    _speed: 2
+    _prefab: {fileID: -5792936045880146169, guid: 78a084adde8f2a44cb60f23152d4ddd7, type: 3}
+    _speed: 3
     _healthPoint: 100
     _damage: 2
-    _path: {fileID: 11400000, guid: ae13425e4b8c99941bbf2e35e8b05b67, type: 2}
-    _waitAfterWave: 6
+    _path:
+    - {x: -2.259, y: 2, z: 1.11}
+    - {x: 2.173, y: 2, z: 1.11}
+    _waitAfterWave: 3
   _enemyBag: {fileID: 1660825075}
-  _waitAfterEnemy: 3
 --- !u!4 &1660825074
 Transform:
   m_ObjectHideFlags: 0
@@ -17881,7 +17903,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2011891144}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -2.259, y: 1.833, z: 1.1099999}
+  m_LocalPosition: {x: -2.259, y: 2, z: 1.1099999}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -17995,6 +18017,37 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!1 &2040412954
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2040412955}
+  m_Layer: 6
+  m_Name: PointForEnemy
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2040412955
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2040412954}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1413727143}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2052064916
 GameObject:
   m_ObjectHideFlags: 0
@@ -18213,8 +18266,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 416857370}
   m_HandleRect: {fileID: 416857369}
   m_Direction: 2
-  m_Value: -0.0000010217145
-  m_Size: 0.00000033756515
+  m_Value: 0
+  m_Size: 0.8351558
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:

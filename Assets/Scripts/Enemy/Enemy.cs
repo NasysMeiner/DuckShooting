@@ -1,3 +1,4 @@
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -6,7 +7,7 @@ public abstract class Enemy : MonoBehaviour
     [SerializeField] protected float _healthPoint = 100;
     [SerializeField] protected float _damage = 1f;
     [SerializeField] protected Slider _healthBar;
-    [SerializeField] protected Path _path;
+    [SerializeField] protected Vector3[] _path;
     [SerializeField] protected float _speed = 2;
     [SerializeField] protected bool IsOnActive = false;
 
@@ -39,7 +40,7 @@ public abstract class Enemy : MonoBehaviour
         _healthPoint -= damage;
     }
 
-    public virtual void Init(float healthPoint, float damage, float speed, Path path, EnemyBag enemyBag)
+    public virtual void Init(float healthPoint, float damage, float speed, Vector3[] path, EnemyBag enemyBag)
     {
         _healthPoint = healthPoint;
         _damage = damage;
@@ -51,7 +52,7 @@ public abstract class Enemy : MonoBehaviour
 
     private void Movement()
     {
-        Vector3 destination = _path.Points[_index];
+        Vector3 destination = _path[_index];
         //Vector3 newPosition = Vector3.MoveTowards(transform.position, destination, _speed * Time.fixedDeltaTime);
 
         transform.Translate((destination - transform.position).normalized * _speed * Time.deltaTime, Space.World);
@@ -67,7 +68,7 @@ public abstract class Enemy : MonoBehaviour
 
         if (distance <= 0.05)
         {
-            if (_index < _path.Points.Count - 1)
+            if (_index < _path.Length - 1)
             {
                 _index++;
             }

@@ -408,9 +408,9 @@ GameObject:
   - component: {fileID: 6295970287642845701}
   - component: {fileID: 3241747868036617866}
   - component: {fileID: 8981370273794234143}
-  - component: {fileID: -5792936045880146169}
+  - component: {fileID: 5153080910974909542}
   m_Layer: 0
-  m_Name: FlyingEnemy
+  m_Name: JumpingEnemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -460,7 +460,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 0cc1a11bc89ae694ba77494756f71c41, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -527,12 +527,12 @@ Rigidbody:
     m_Bits: 0
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
-  m_UseGravity: 0
+  m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 1
-  m_Constraints: 90
+  m_Constraints: 112
   m_CollisionDetection: 2
---- !u!114 &-5792936045880146169
+--- !u!114 &5153080910974909542
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -541,14 +541,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 8559529370181676410}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a62bbd64fb7167a4ca6507da7810b1db, type: 3}
+  m_Script: {fileID: 11500000, guid: 782f226fcc5949147a7f219e1c7d5abd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _healthPoint: 100
   _damage: 1
   _healthBar: {fileID: 6639430956374097999}
   _path:
-  - {x: -2.259, y: 2, z: 1.11}
-  - {x: 2.173, y: 2, z: 1.11}
+  - {x: -2.259, y: 1, z: 1.11}
+  - {x: 2.173, y: 1, z: 1.11}
   _speed: 2
   IsOnActive: 0
+  _jumpForce: 50
+  _rigidbody: {fileID: 8981370273794234143}

@@ -2297,7 +2297,7 @@ GameObject:
   - component: {fileID: 2018410977163569947}
   - component: {fileID: 1644277461539831796}
   m_Layer: 0
-  m_Name: RamEnemy 1
+  m_Name: RamEnemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2407,9 +2407,11 @@ MonoBehaviour:
   _healthPoint: 100
   _damage: 1
   _healthBar: {fileID: 3424472919373841667}
-  _path: {fileID: 11400000, guid: 79659c22d218f4c428d59ad333c9d067, type: 2}
+  _path:
+  - {x: -2.259, y: 0.492705, z: 1.11}
+  - {x: 2.173, y: 0.492705, z: 1.11}
   _speed: 2
-  _rigidbody: {fileID: 2018410977163569947}
+  IsOnActive: 0
 --- !u!1 &9147025985335712697
 GameObject:
   m_ObjectHideFlags: 0

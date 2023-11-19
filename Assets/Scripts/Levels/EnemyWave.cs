@@ -7,7 +7,6 @@ public class EnemyWave : MonoBehaviour
     [SerializeField] private bool _isOnSpawn = true;
     [SerializeField] private List<Enemys> _enemys;
     [SerializeField] private EnemyBag _enemyBag;
-    [SerializeField] private int _waitAfterEnemy;
 
     private int _millisekundy = 1000;
     private bool _isStart = true;
@@ -58,12 +57,12 @@ public class Enemys
     [SerializeField] private float _speed;
     [SerializeField] private float _healthPoint;
     [SerializeField] private float _damage;
-    [SerializeField] private Path _path;
+    [SerializeField] private Vector3[] _path;
     [SerializeField] private float _waitAfterWave;
 
     public int Number => _number;
     public Enemy Prefab => _prefab;
-    public Path Path => _path;
+    public Vector3[] Path => _path;
     public float Speed => _speed;
     public float HealthPoint => _healthPoint;
     public float Damage => _damage;
