@@ -7,10 +7,12 @@ public class SpawnerGuns : MonoBehaviour
     [SerializeField] private List<FormGun> _formsGun;
 
     private ShopGun _shopGun;
+    private AmmoBag _ammoBag;
 
-    public void Init(ShopGun shopGun)
+    public void Init(ShopGun shopGun, AmmoBag ammoBag)
     {
         _shopGun = shopGun;
+        _ammoBag = ammoBag;
         SpawnAllGun();
     }
 
@@ -19,7 +21,7 @@ public class SpawnerGuns : MonoBehaviour
         foreach(FormGun formGun in _formsGun)
         {
             Gun newGun = Instantiate(formGun.PrefabGun, transform);
-            newGun.Init(formGun.TimeShoot, _shopGun.AmmoBag, formGun.EquipmentTime, formGun.StoreSize, formGun.RechargeTime);
+            newGun.Init(formGun.TimeShoot, _ammoBag, formGun.EquipmentTime, formGun.StoreSize, formGun.RechargeTime);
             _shopGun.PlaceInCell(newGun, formGun);
         }
     }

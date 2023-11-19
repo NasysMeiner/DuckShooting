@@ -54,14 +54,11 @@ public class Gun : MonoBehaviour, IGun
         if (_isStart == true)
         {
             _isStart = false;
-
-            while (_currentClip.Count > 0)
-            {
-                Bullet bullet = _currentClip.Dequeue();
-                bullet.PullOutOfGun();
-            }
+            UnloadClip();
         }
     }
+
+
 
     public Queue<Bullet> SearchNewClip()
     {
@@ -76,6 +73,7 @@ public class Gun : MonoBehaviour, IGun
     public void ChangeTypeBullet(TypeBullet typeBullet)
     {
         _typeBullet = typeBullet;
+        UnloadClip();
     }
 
     private void TakeShot()
@@ -83,7 +81,7 @@ public class Gun : MonoBehaviour, IGun
         if (_currentClip == null || _currentClip.Count <= 0)
             _currentClip = SearchNewClip();
 
-        if (_currentClip.Count > 0)
+        if (_currentClip.Count > 0 && _currentClip != null)
         {
             Bullet bullet = _currentClip.Dequeue();
 
@@ -97,6 +95,17 @@ public class Gun : MonoBehaviour, IGun
         }
     }
 
+    private void UnloadClip()
+    {
+        while (_currentClip != null && _currentClip.Count > 0)
+        {
+            Bullet bullet = _currentClip.Dequeue();
+            bullet.PullOutOfGun();
+        }
+
+        _currentClip = null;
+    }
+
     private async void TakeFire()
     {
         while (true)
@@ -106,7 +115,7 @@ public class Gun : MonoBehaviour, IGun
 
             TakeShot();
 
-            if (_currentClip.Count <= 0)
+            if (_currentClip.Count <= 0 || _currentClip == null)
                 await Task.Delay((int)(_rechargeTime * _millisekundy));
             else
                 await Task.Delay((int)(_timeShot * _millisekundy));

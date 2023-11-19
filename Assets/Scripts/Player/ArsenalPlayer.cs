@@ -27,7 +27,7 @@ public class ArsenalPlayer : MonoBehaviour
             throw new NotImplementedException("low slots || low icon slots");
 
         for (int i = 0; i < _numberSlots; i++)
-        {      
+        {
             SlotPlayerGun newSlot = _shopGun.SetGunPlayer(iconSlots[i], _slotPosition[i]);
 
             if (newSlot == null)
@@ -97,6 +97,16 @@ public class ArsenalPlayer : MonoBehaviour
         StartFire();
 
         _changeGunButton.interactable = true;
+    }
+
+    public TypeBullet GetTypeBullet(int indexSlot)
+    {
+        return _slotsPlayer[indexSlot].TypeBullet;
+    }
+
+    public void ChangeBullet(TypeBullet typeBullet, int indexSlot)
+    {
+        _slotsPlayer[indexSlot].ChangeTypeBullet(typeBullet);
     }
 
     private void SetCurrentSlotGun(SlotPlayerGun slotPlayerGun)

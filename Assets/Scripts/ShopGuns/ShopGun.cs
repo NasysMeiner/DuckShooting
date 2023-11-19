@@ -1,11 +1,11 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class ShopGun : MonoBehaviour
 {
     [Header("Init Components")]
-    [SerializeField] private AmmoBag _ammoBag;
     [SerializeField] private ArsenalPlayer _arsenalPlayer;
     [SerializeField] private ShopCellGun _prefabUIShopCell;
 
@@ -17,7 +17,9 @@ public class ShopGun : MonoBehaviour
 
     private int _currentSlotIndex = 0;
 
-    public AmmoBag AmmoBag => _ammoBag;
+    public event UnityAction<TypeBullet> ChangeCurrentSlotIndex;
+
+    public int CurrentSlotIndex => _currentSlotIndex;
 
     private void OnDisable()
     {
@@ -42,6 +44,7 @@ public class ShopGun : MonoBehaviour
 
         _slots[newIndex].Press();
         _currentSlotIndex = newIndex;
+        ChangeCurrentSlotIndex?.Invoke(_arsenalPlayer.GetTypeBullet(_currentSlotIndex));
     }
 
     public void PlaceInCell(Gun gun, FormGun formGun)
@@ -65,6 +68,11 @@ public class ShopGun : MonoBehaviour
         }
 
         return null;
+    }
+
+    public void UpdateData()
+    {
+        ChangeCurrentSlotIndex?.Invoke(_arsenalPlayer.GetTypeBullet(_currentSlotIndex));
     }
 
     private void ChangeGunPlayer(Gun gun)
