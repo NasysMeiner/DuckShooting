@@ -2297,6 +2297,7 @@ GameObject:
   m_Component:
   - component: {fileID: 251309347}
   - component: {fileID: 251309349}
+  - component: {fileID: 251309350}
   - component: {fileID: 251309348}
   m_Layer: 5
   m_Name: AmmoSlots
@@ -2304,7 +2305,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &251309347
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2366,6 +2367,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 251309346}
   m_CullTransparentMesh: 1
+--- !u!114 &251309350
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 251309346}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb6b3d77cc7a89d4a9deba37b217224e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &253658568 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: d67572a7869ec0148afbe66266ee274d, type: 3}
@@ -7081,6 +7094,7 @@ GameObject:
   - component: {fileID: 726061844}
   - component: {fileID: 726061848}
   - component: {fileID: 726061847}
+  - component: {fileID: 726061849}
   - component: {fileID: 726061846}
   - component: {fileID: 726061845}
   m_Layer: 5
@@ -7173,7 +7187,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 726061847}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 726061849}
+        m_TargetAssemblyTypeName: StandartButton, Assembly-CSharp
+        m_MethodName: Press
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &726061847
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7212,6 +7238,25 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 726061843}
   m_CullTransparentMesh: 1
+--- !u!114 &726061849
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 726061843}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1033c5ce75e4ac944bd402e1c698880a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _button: {fileID: 726061846}
+  _pressedButton: {fileID: 1647791905}
+  _textButton: {fileID: 180588097}
+  _enable: {r: 1, g: 1, b: 1, a: 1}
+  _disable: {r: 0, g: 0, b: 0, a: 1}
+  _panel: {fileID: 251309350}
+  _timeMilliseconds: 200
 --- !u!1 &748351864
 GameObject:
   m_ObjectHideFlags: 0
@@ -13137,7 +13182,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 7}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1503258122
 MonoBehaviour:
@@ -18222,7 +18267,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 416857369}
   m_Direction: 2
   m_Value: -0.0000010217145
-  m_Size: 0
+  m_Size: 0.00000033756515
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
