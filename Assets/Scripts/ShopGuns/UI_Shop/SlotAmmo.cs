@@ -1,8 +1,20 @@
+using System;
+using System.Threading.Tasks;
+using UnityEngine;
+using UnityEngine.Events;
+
 public class SlotAmmo : ButtonAnimation
 {
-    public void InitSlotAmmo(string name)
+    private TypeBullet _typeBullet;
+
+    public TypeBullet TypeBullet => _typeBullet;
+
+    public event UnityAction<TypeBullet> ChangeBullet;
+
+    public void InitSlotAmmo(TypeBullet typeBullet)
     {
-        _textButton.text = name;
+        _textButton.text = $"{typeBullet}";
+        _typeBullet = typeBullet;
     }
 
     public override void Press()
@@ -13,5 +25,10 @@ public class SlotAmmo : ButtonAnimation
     public override void Off()
     {
         base.Off();
+    }
+
+    public void ClickButton()
+    {
+        ChangeBullet?.Invoke(_typeBullet);
     }
 }

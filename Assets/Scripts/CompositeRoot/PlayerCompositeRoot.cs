@@ -13,16 +13,24 @@ public class PlayerCompositeRoot : CompositeRoot
     [SerializeField] private ShopGun _shopGun;
     [SerializeField] private SpawnerGuns _spawnerGuns;
     [SerializeField] private SpawnerBullet _spawnerBullet;
-
-    [Header("Other components")]
     [SerializeField] private AmmoBag _ammoBag;
+
+    //[Header("Other components")]
 
     public override void Compose()
     {
         _shopGun.InitShopGun();
-        _spawnerGuns.Init(_shopGun);
+        _ammoBag.InitAmmoBag(_shopGun, _arsenalPlayer);
+        _spawnerGuns.Init(_shopGun, _ammoBag);
         _arsenalPlayer.InitArsenal(_iconSlots);
         _spawnerBullet.InitSpawnBullet(_ammoBag);
+
+        UpdateData();
+    }
+
+    private void UpdateData()
+    {
+        _shopGun.UpdateData();
     }
 }
 

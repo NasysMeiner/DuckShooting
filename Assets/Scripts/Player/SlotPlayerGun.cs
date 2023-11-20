@@ -12,6 +12,7 @@ public class SlotPlayerGun
 
     public Gun Gun => _gun;
     public bool IsActiveSlot => _isActiveSlot;
+    public TypeBullet TypeBullet => _typeBullet;
     public Transform TransformPoint => _transformPoint;
 
     public SlotPlayerGun(Gun gun, TypeBullet typeBullet, IconSlot iconSlot, Transform transformPoint)

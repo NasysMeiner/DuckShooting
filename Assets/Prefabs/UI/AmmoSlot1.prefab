@@ -335,10 +335,10 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: SlotsGunPlayer, Assembly-CSharp
-        m_MethodName: ChangeActiveSlot
-        m_Mode: 3
+      - m_Target: {fileID: 9044489761314798473}
+        m_TargetAssemblyTypeName: SlotAmmo, Assembly-CSharp
+        m_MethodName: ClickButton
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -362,5 +362,5 @@ MonoBehaviour:
   _button: {fileID: 2723395508142654080}
   _pressedButton: {fileID: 4819427661592233783}
   _textButton: {fileID: 5721501492905778478}
-  _enable: {r: 0.5705408, g: 1, b: 0.5518868, a: 0}
-  _disable: {r: 0, g: 0, b: 0, a: 0}
+  _enable: {r: 0.5705408, g: 1, b: 0.5518868, a: 1}
+  _disable: {r: 0, g: 0, b: 0, a: 1}

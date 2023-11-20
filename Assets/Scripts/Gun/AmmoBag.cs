@@ -4,7 +4,26 @@ using UnityEngine;
 
 public class AmmoBag : MonoBehaviour
 {
+    [SerializeField] private SlotAmmo _prefabSlotAmmo;
+    [SerializeField] private Transform _transformSlotAmmo;
+
     private List<List<Bullet>> _typesBullets = new List<List<Bullet>>();
+    private List<SlotAmmo> _ammoView = new List<SlotAmmo>();
+
+    private ShopGun _shopGun;
+    private ArsenalPlayer _arsenalPlayer;
+
+    private void OnDisable()
+    {
+        _shopGun.ChangeCurrentSlotIndex -= ViewTypeBullet;
+    }
+
+    public void InitAmmoBag(ShopGun shopGun, ArsenalPlayer arsenalPlayer)
+    {
+        _arsenalPlayer = arsenalPlayer;
+        _shopGun = shopGun;
+        _shopGun.ChangeCurrentSlotIndex += ViewTypeBullet;
+    }
 
     public void AddBullet(Bullet bullet)
     {
@@ -51,7 +70,29 @@ public class AmmoBag : MonoBehaviour
 
     private void CreateNewListTypeBullet(Bullet bullet)
     {
-        List<Bullet> newType = new List<Bullet> { bullet };
+        SlotAmmo newSlot = Instantiate(_prefabSlotAmmo, _transformSlotAmmo);
+        newSlot.InitSlotAmmo(bullet.TypeBullet);
+        _ammoView.Add(newSlot);
+        newSlot.ChangeBullet += ChangeBullet;
+
+        List<Bullet> newType = new() { bullet };
         _typesBullets.Add(newType);
+    }
+
+    private void ViewTypeBullet(TypeBullet typeBullet)
+    {
+        foreach (SlotAmmo slotAmmo in _ammoView)
+        {
+            if (slotAmmo.IsActive && slotAmmo.TypeBullet != typeBullet)
+                slotAmmo.Off();
+            else if(slotAmmo.TypeBullet == typeBullet)
+                slotAmmo.Press();
+        }
+    }
+
+    private void ChangeBullet(TypeBullet typeBullet)
+    {
+        _arsenalPlayer.ChangeBullet(typeBullet, _shopGun.CurrentSlotIndex);
+        ViewTypeBullet(typeBullet);
     }
 }
