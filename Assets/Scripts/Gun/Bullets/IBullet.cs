@@ -1,5 +1,10 @@
 public interface IBullet
 {
+    float Damage
+    {
+        get;
+    }
+
     void SetVelocity();
-    void MakeDamage(int damage);
+    void MakeDamage(float damage);
 }

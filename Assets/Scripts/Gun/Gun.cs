@@ -67,6 +67,8 @@ public class Gun : MonoBehaviour, IGun
 
     public virtual Bullet SetTypeDamage(Bullet bullet)
     {
+        bullet.MakeDamage(_damage);
+
         return bullet;
     }
 

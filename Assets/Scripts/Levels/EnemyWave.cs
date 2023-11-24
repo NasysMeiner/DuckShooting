@@ -7,14 +7,15 @@ public class EnemyWave : MonoBehaviour
     [SerializeField] private List<Enemys> _enemys;
     [SerializeField] private EnemyBag _enemyBag;
 
-    private int _millisekundy = 1000;
-    private int _currentWaveIndex;
+    //private int _millisekundy = 1000;
+    //private int _currentWaveIndex;
 
     private void Start()
     {
         if (_isOnSpawn)
             SpawnEnemy();
     }
+
     private void SpawnEnemy()
     {
         foreach (Enemys enemy in _enemys)

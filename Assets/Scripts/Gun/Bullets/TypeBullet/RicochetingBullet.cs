@@ -3,7 +3,6 @@ using UnityEngine;
 public class RicochetingBullet : Bullet
 {
     [SerializeField] private int _numberMaxRicochets = 5;
-    [SerializeField] private int _millisecondsWait = 100;
 
     private Enemy _nextTarget = null;
 

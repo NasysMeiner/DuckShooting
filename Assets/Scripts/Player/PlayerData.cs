@@ -70,7 +70,7 @@ public class PlayerData : MonoBehaviour, IDisposable
     public bool IsDataLoaded { get; private set; } = false;
 
     public event UnityAction<int> MoneyChanged;
-    public event UnityAction<int> LevelChanged;
+    //public event UnityAction<int> LevelChanged;
 
     public void Init()
     {

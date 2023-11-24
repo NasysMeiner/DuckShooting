@@ -19,8 +19,9 @@ public abstract class Bullet : MonoBehaviour, IBullet
 
     public bool IsInCannon => _isInCannon;
     public TypeBullet TypeBullet => _typeBullet;
+    float IBullet.Damage => _damage;
 
-    public virtual void MakeDamage(int damage)
+    public virtual void MakeDamage(float damage)
     {
         _damage += damage;
     }
