@@ -3703,7 +3703,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 82, y: -120}
+  m_AnchoredPosition: {x: 82, y: 0}
   m_SizeDelta: {x: 158.7661, y: 537.9043}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &380962872
@@ -8741,7 +8741,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0.47447914}
-  m_AnchoredPosition: {x: -0.65856934, y: -12}
+  m_AnchoredPosition: {x: -0.65856934, y: 0}
   m_SizeDelta: {x: 53.9458, y: 77.3979}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &945247549
@@ -12228,7 +12228,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 89.41647}
+  m_AnchoredPosition: {x: 0, y: 89.759186}
   m_SizeDelta: {x: 0, y: 542.43}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1395189717
@@ -14717,15 +14717,15 @@ MonoBehaviour:
   _isOnSpawn: 1
   _enemys:
   - _number: 1
-    _prefab: {fileID: 5153080910974909542, guid: 23b0f9c8a313fd04d9b5b120738cee73, type: 3}
+    _prefab: {fileID: -5792936045880146169, guid: 78a084adde8f2a44cb60f23152d4ddd7, type: 3}
     _speed: 3
     _healthPoint: 100
     _damage: 2
     _path:
-    - {x: -2.259, y: 0.492705, z: 1.11}
-    - {x: 2.173, y: 0.492705, z: 1.11}
+    - {x: -2.259, y: 2, z: 1.11}
+    - {x: 2.173, y: 2, z: 1.11}
     _waitAfterWave: 3
-  - _number: 1
+  - _number: 0
     _prefab: {fileID: -715642404077166471, guid: 6b04e053888d72a4490c581c71a936c4, type: 3}
     _speed: 2
     _healthPoint: 100
@@ -14734,7 +14734,7 @@ MonoBehaviour:
     - {x: -2.259, y: 2, z: 1.11}
     - {x: 2.173, y: 2, z: 1.11}
     _waitAfterWave: 3
-  - _number: 2
+  - _number: 0
     _prefab: {fileID: 1644277461539831796, guid: 1b352d79ab9e2b7468a6ba1577afeb2e, type: 3}
     _speed: 3
     _healthPoint: 100
@@ -14742,15 +14742,6 @@ MonoBehaviour:
     _path:
     - {x: -2.259, y: 0.492705, z: 1.11}
     - {x: 2.173, y: 0.492705, z: 1.11}
-    _waitAfterWave: 3
-  - _number: 1
-    _prefab: {fileID: -5792936045880146169, guid: 78a084adde8f2a44cb60f23152d4ddd7, type: 3}
-    _speed: 3
-    _healthPoint: 100
-    _damage: 2
-    _path:
-    - {x: -2.259, y: 2, z: 1.11}
-    - {x: 2.173, y: 2, z: 1.11}
     _waitAfterWave: 3
   _enemyBag: {fileID: 1660825075}
 --- !u!4 &1660825074
@@ -18266,8 +18257,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 416857370}
   m_HandleRect: {fileID: 416857369}
   m_Direction: 2
-  m_Value: -0.0000010217145
-  m_Size: 0.00000033756515
+  m_Value: -0.0000010199818
+  m_Size: 0.8345239
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -20055,6 +20046,7 @@ GameObject:
   - component: {fileID: 6362493193125624377}
   - component: {fileID: 7595786932021681837}
   - component: {fileID: 8114134701477053300}
+  - component: {fileID: 8114134701477053301}
   m_Layer: 0
   m_Name: Ground_New
   m_TagString: Untagged
@@ -25674,6 +25666,18 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 19.999998, y: 0.21271656, z: 25.599995}
   m_Center: {x: 0, y: -0.09364165, z: 0}
+--- !u!114 &8114134701477053301
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1021505655848816712}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: faf749f82e0c03040927b503a021d5be, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!222 &8134832625837740425
 CanvasRenderer:
   m_ObjectHideFlags: 0

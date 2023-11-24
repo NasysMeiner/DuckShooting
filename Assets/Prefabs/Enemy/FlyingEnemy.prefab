@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2336664443399735326}
   - component: {fileID: 2809785019114047443}
   - component: {fileID: 5537257939286383423}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Fill
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -87,7 +87,7 @@ GameObject:
   - component: {fileID: 5256493345819118320}
   - component: {fileID: 7385339488322559414}
   - component: {fileID: 8470114296100763416}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -162,7 +162,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1393988249931095641}
   - component: {fileID: 6639430956374097999}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: HealthBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -255,7 +255,7 @@ GameObject:
   - component: {fileID: 2554419309956740772}
   - component: {fileID: 7994182154032745115}
   - component: {fileID: 6007165207285779380}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: EnemyCanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -367,7 +367,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7380399842992073391}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Fill Area
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -409,7 +409,7 @@ GameObject:
   - component: {fileID: 3241747868036617866}
   - component: {fileID: 8981370273794234143}
   - component: {fileID: -5792936045880146169}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: FlyingEnemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -552,3 +552,5 @@ MonoBehaviour:
   - {x: 2.173, y: 2, z: 1.11}
   _speed: 2
   IsOnActive: 0
+  GrenadePref: {fileID: 2369796830760706322, guid: 7697a7d2ef1f7294d8670abd626b7062, type: 3}
+  throwForce: 2
