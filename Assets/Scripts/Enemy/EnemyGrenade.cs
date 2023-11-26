@@ -3,16 +3,16 @@ using UnityEngine;
 
 public class EnemyGrenade : MonoBehaviour
 {
-    public GameObject ExplosionEffect;
-    public float GrenadeRadius;
-    public float ExplosionForce;
-    public float DamageRate;
+    [SerializeField] private GameObject _explosionEffect;
+    [SerializeField] private float _radius;
+    [SerializeField] private float _explosionForce;
+    [SerializeField] private float _damage;
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.TryGetComponent(out Ground ground))
         {
-            Instantiate(ExplosionEffect, transform.position, transform.rotation);
+            Instantiate(_explosionEffect, transform.position, transform.rotation);
 
             Destroy(gameObject);
         }
@@ -20,8 +20,8 @@ public class EnemyGrenade : MonoBehaviour
 
     //private void Explode()
     //{
-    //    Instantiate(ExplosionEffect, transform.position, transform.rotation);
-    //    Collider[] touchedObjects = Physics.OverlapSphere(transform.position, GrenadeRadius).Where(x => x.tag == "Player").ToArray();
+    //    Instantiate(_explosionEffect, transform.position, transform.rotation);
+    //    Collider[] touchedObjects = Physics.OverlapSphere(transform.position, _radius).Where(x => x.tag == "Player").ToArray();
 
     //    foreach (Collider touchedObject in touchedObjects)
     //    {
@@ -29,11 +29,11 @@ public class EnemyGrenade : MonoBehaviour
 
     //        if (rigidbody != null)
     //        {
-    //            rigidbody.AddExplosionForce(ExplosionForce, transform.position, GrenadeRadius);
+    //            rigidbody.AddExplosionForce(_explosionForce, transform.position, _radius);
     //        }
 
     //        var target = touchedObject.gameObject.GetComponent<Player>();
-    //        target.TakeDamage(DamageRate);
+    //        target.TakeDamage(_damage);
 
     //    }
 

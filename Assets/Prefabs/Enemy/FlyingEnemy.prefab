@@ -552,5 +552,5 @@ MonoBehaviour:
   - {x: 2.173, y: 2, z: 1.11}
   _speed: 2
   IsOnActive: 0
-  GrenadePref: {fileID: 2369796830760706322, guid: 7697a7d2ef1f7294d8670abd626b7062, type: 3}
-  throwForce: 2
+  _grenadePref: {fileID: 1415556611663978, guid: 216ec6e5fef3e254d86b21071e614d66, type: 3}
+  _throwForce: 4

@@ -47,7 +47,6 @@ public abstract class Enemy : MonoBehaviour
         _speed = speed;
         _path = path;
         _enemyBag = enemyBag;
-
     }
 
     private void Movement()

@@ -3,8 +3,8 @@ using UnityEngine;
 
 public class FlyingEnemy : Enemy
 {
-    public GameObject GrenadePref;
-    public float throwForce = 300;
+    [SerializeField] private GameObject _grenadePref;
+    [SerializeField] private float _throwForce = 300;
     private int _atackCooldown = 3;
     private int _millisekundy = 1000;
 
@@ -30,6 +30,6 @@ public class FlyingEnemy : Enemy
 
     private void ThrowBomb()
     {
-        GameObject grenadeObject = Instantiate(GrenadePref, transform.position, transform.rotation);
+        GameObject grenadeObject = Instantiate(_grenadePref, transform.position, transform.rotation);
     }
 }
