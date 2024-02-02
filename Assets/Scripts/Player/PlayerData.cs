@@ -15,7 +15,7 @@ public class PlayerData : MonoBehaviour, IDisposable
 
     public static PlayerData Instance { get; private set; }
 
-    private int _money;
+    private int _money = 100000;
     private int _level;
     private int _selectedCharacter;
     private Dictionary<PlayerCharacterName, int> _conditionsForCharacters = new Dictionary<PlayerCharacterName, int>();

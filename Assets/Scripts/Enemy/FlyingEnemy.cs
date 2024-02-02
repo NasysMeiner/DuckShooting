@@ -5,6 +5,7 @@ public class FlyingEnemy : Enemy
 {
     [SerializeField] private GameObject _grenadePref;
     [SerializeField] private float _throwForce = 300;
+
     private int _atackCooldown = 3;
     private int _millisekundy = 1000;
 

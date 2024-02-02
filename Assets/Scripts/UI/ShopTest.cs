@@ -64,9 +64,9 @@ public class ShopTest : MonoBehaviour
 
     private void TryBuyCharacter()
     {
-        bool ñanPay = PlayerData.Instance.Money - _currentPrice.Cost >= 0;
+        bool canPay = PlayerData.Instance.Money - _currentPrice.Cost >= 0;
 
-        if (ñanPay)
+        if (canPay)
             ShowMessageBoxBuy();
         else
             _messageBoxNotEnoughMoney.ShowMessageBox();
