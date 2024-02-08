@@ -1,5 +1,5 @@
-using UnityEngine;
 using Agava.YandexGames;
+using UnityEngine;
 
 public class LoginAcceptButton : MonoBehaviour
 {
