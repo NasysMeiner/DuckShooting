@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using static Cinemachine.AxisState;
 
 [RequireComponent(typeof(Rigidbody))]
 [RequireComponent(typeof(CapsuleCollider))]
@@ -9,6 +10,7 @@ public class Movement : MonoBehaviour
     [SerializeField] private float _maxSpeed = 1.0f;
     [SerializeField] private float _jumpForce = 5f;
     [SerializeField] private LayerMask GroundLayer = 1;
+    [SerializeField] private Animator _animator;
 
     private Rigidbody _rigidbody;
     private CapsuleCollider _collider;
@@ -50,13 +52,24 @@ public class Movement : MonoBehaviour
 
     private void Move()
     {
+        if (_movementVector.x != 0 || _movementVector.z != 0)
+        {
+            _animator.SetBool(Constantes.StrMove, true);
+        }
+        else
+        {
+            _animator.SetBool(Constantes.StrMove, false);
+        }
+
         if (Application.isMobilePlatform)
         {
 
         }
         else
         {
+            Vector3 direct = Vector3.RotateTowards(transform.forward, _movementVector, _speed, 0.0f);
             _rigidbody.AddForce(_movementVector * _speed, ForceMode.Impulse);
+            transform.rotation = Quaternion.LookRotation(direct);
             _rigidbody.velocity = new Vector3(Math.Clamp(_rigidbody.velocity.x, -_maxSpeed, _maxSpeed), _rigidbody.velocity.y, 0);
         }
            
@@ -72,7 +85,13 @@ public class Movement : MonoBehaviour
         {
             if (_isGrounded && (Input.GetAxis("Jump") > 0))
             {
+                _animator.SetBool(Constantes.StrJump, true);
+
                 _rigidbody.AddForce(Vector3.up * _jumpForce, ForceMode.Impulse);
+            }
+            else
+            {
+                _animator.SetBool(Constantes.StrJump, false);
             }
         }
     }

@@ -2,6 +2,9 @@ using UnityEngine;
 
 public class Constantes : MonoBehaviour
 {
+    public const string StrMove = "IsMoving";
+    public const string StrJump = "IsJumping";
+    public const string StrGround = "IsGrounded";
     public const string StrMainMenuScene = "Main_Menu";
     public const string StrGame = "Game";
     public const string StrMusic = "Music";
