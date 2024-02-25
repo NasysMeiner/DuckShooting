@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 4848866078455141487}
   - component: {fileID: 4848866078455141488}
   - component: {fileID: 4848866078455141489}
-  - component: {fileID: 4848866078455141486}
   m_Layer: 5
   m_Name: Text_Free
   m_TagString: Untagged
@@ -136,20 +135,6 @@ MonoBehaviour:
   m_hasFontAssetChanged: 1
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!114 &4848866078455141486
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4848866078455141484}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dbf51be86e70d7941bd40914206e4ddc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  translationName: Buy
-  FallbackText: Buy
 --- !u!1 &4848866078726029453
 GameObject:
   m_ObjectHideFlags: 0
@@ -243,7 +228,6 @@ GameObject:
   - component: {fileID: 4848866079202057268}
   - component: {fileID: 4848866079202057269}
   - component: {fileID: 4848866079202057266}
-  - component: {fileID: 4848866079202057267}
   m_Layer: 5
   m_Name: Button_Close
   m_TagString: Untagged
@@ -353,18 +337,6 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &4848866079202057267
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4848866079202057265}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1334ed51e34b423bbc1a9c7b05680633, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &4848866079280575030
 GameObject:
   m_ObjectHideFlags: 0
@@ -453,7 +425,6 @@ GameObject:
   - component: {fileID: 4848866079311160250}
   - component: {fileID: 4848866079311160251}
   - component: {fileID: 4848866079311160248}
-  - component: {fileID: 4848866079311160249}
   m_Layer: 5
   m_Name: Button_Buy
   m_TagString: Untagged
@@ -564,18 +535,6 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &4848866079311160249
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4848866079311160247}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1334ed51e34b423bbc1a9c7b05680633, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &4848866079662697791
 GameObject:
   m_ObjectHideFlags: 0
@@ -585,7 +544,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4848866079662697790}
-  - component: {fileID: 4848866079662697793}
   m_Layer: 5
   m_Name: MessageBox_Buy
   m_TagString: Untagged
@@ -607,28 +565,13 @@ RectTransform:
   m_Children:
   - {fileID: 4848866080390335838}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &4848866079662697793
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4848866079662697791}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 26c57813e4c2418f941faaa114fcc86c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _messageBox: {fileID: 4848866080390335839}
-  _buttonClose: {fileID: 4848866079202057266}
-  _buttonConfirm: {fileID: 4848866079311160248}
 --- !u!1 &4848866079799369615
 GameObject:
   m_ObjectHideFlags: 0
@@ -792,7 +735,6 @@ GameObject:
   - component: {fileID: 4848866079861907508}
   - component: {fileID: 4848866079861907513}
   - component: {fileID: 4848866079861907510}
-  - component: {fileID: 4848866079861907511}
   m_Layer: 5
   m_Name: Text_Info
   m_TagString: Untagged
@@ -917,20 +859,6 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!114 &4848866079861907511
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4848866079861907509}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dbf51be86e70d7941bd40914206e4ddc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  translationName: DoYouWantBuy
-  FallbackText: DoYouWantWatch
 --- !u!1 &4848866080169156630
 GameObject:
   m_ObjectHideFlags: 0
