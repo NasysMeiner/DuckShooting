@@ -9,5 +9,4 @@ public class Money : MonoBehaviour
     {
         _countOfMoney.text = PlayerPrefs.GetInt(Constantes.StrCountMoney).ToString();
     }
-
 }
